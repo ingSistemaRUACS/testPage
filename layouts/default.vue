@@ -11,4 +11,8 @@ html {
   font-size: 16px;
   box-sizing: border-box;
 }
+body
+{
+  background-color: #EEEEEE;
+}
 </style>
