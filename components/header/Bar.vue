@@ -13,6 +13,7 @@ export default {}
 .top-bar{
   position: fixed;
   background: #474747;
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
