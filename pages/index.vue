@@ -1,16 +1,13 @@
 <template>
   <div class="container">
-    <Header />
     <Timeline id="tm" />
   </div>
 </template>
 <script>
-import Header from '@/components/header/Header'
 import Timeline from '@/components/timeline/Timeline'
 
 export default {
   components: {
-    Header,
     Timeline
   }
 }
