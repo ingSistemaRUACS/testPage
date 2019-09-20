@@ -21,36 +21,45 @@ export default {
 }
 </script>
 <style scope>
-article {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0px auto;
-}
-.ListClass {
-  width: 820px;
-  margin: 50px auto;
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: repeat(2, 1fr);
-}
-
-@media screen and (max-width: 992px) {
+@media screen and (min-width: 320px) and (max-width: 479px) {
+  article {
+    width: 100%;
+    margin: 50px 0px;
+    display: flex;
+    justify-items: center;
+  }
   .ListClass {
-    width: 90%;
-    margin: 50px 5%;
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: repeat(2,50%);
+    grid-template-columns: auto;
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 480px) and (max-width: 719px) {
+  article {
+    width: 100%;
+    margin: 50px 0px;
+  }
   .ListClass {
-    margin: 50px auto;
+    width: 360px;
+    margin: 0px auto;
     display: grid;
-    grid-gap: 20px;
-    grid-template-columns: 100%;
+    grid-gap: 10px;
+    grid-template-columns: 350px;
   }
 }
 
+@media screen and (min-width: 720px) {
+  article {
+    width: 100%;
+    margin: 50px 0px;
+  }
+  .ListClass {
+    width: 710px;
+    margin: 0px auto;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(2, 350px);
+  }
+}
 </style>

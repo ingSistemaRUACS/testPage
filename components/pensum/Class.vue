@@ -70,10 +70,9 @@ export default {
 <style scope>
 .class {
   position: relative;
+  display: inline;
   background: #fff;
-  max-width: 350px;
   margin: 0;
-  padding: 5px;
   -webkit-box-shadow: 3px 9px 9px -9px rgba(0, 0, 0, 0.57);
   -moz-box-shadow: 3px 9px 9px -9px rgba(0, 0, 0, 0.57);
   box-shadow: 3px 9px 9px -9px rgba(0, 0, 0, 0.57);
@@ -89,15 +88,18 @@ export default {
 }
 
 .TitleContainer .logoClass {
+  background-color: #777777;
+  width: 60px;
+  height: 60px;
   grid-row: span 2;
   display: flex;
   align-items: center;
-  margin: 0 10px;
+  margin: 0;
   padding-top: 5px;
 }
 
 .TitleContainer .logoClass img {
-  width: 40px;
+  width: 35px;
   margin: auto;
 }
 
@@ -122,6 +124,7 @@ export default {
   grid-column: 2/6;
   grid-row: 2/3;
   margin: 0;
+  margin-left: 5px;
   color: #4b4b4b;
   display: flex;
   align-items: center;
@@ -135,6 +138,7 @@ export default {
   align-items: flex-start;
   justify-items: center;
   margin: 0 auto;
+  margin-top: 4px;
   color: #797979;
 }
 
@@ -148,13 +152,14 @@ export default {
 
 .class .InfoCOntainer {
   position: absolute;
-  max-width: 340px;
+  max-width: 330px;
   width: 100%;
   left: 0;
   background: #fff;
   height: 155px;
   border-top: solid #a3a3a3 1px;
-  padding: 10px;
+  padding: 5px 10px;
+  padding-bottom: 15px;
   z-index: 15;
 }
 
@@ -179,10 +184,6 @@ export default {
 }
 
 @media screen and (max-width: 768px) {
-  .class {
-    max-width: 400px;
-    margin: 0 auto;
-  }
 
   .class .InfoCOntainer {
     position: relative;

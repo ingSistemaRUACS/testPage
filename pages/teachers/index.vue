@@ -2,7 +2,7 @@
   <article>
     <div class="ListTeachers">
       <Teacher
-        :src="require('@/assets/user.svg')"
+        :src="require('@/assets/defaulUser-100.jpg')"
         name="Mcs. Nombre Apellido"
         v-for="item in 15"
         :key="item"
@@ -20,35 +20,31 @@ export default {
 }
 </script>
 <style scoped>
-article {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0px auto;
-}
-.ListTeachers {
-  max-width: 620px;
-  margin: 50px auto;
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: repeat(2, 1fr);
-}
-@media screen and (max-width: 992px) {
+@media screen and (min-width: 320px) and (max-width: 579px) {
+  article {
+    width: 100%;
+    margin: 50px 0;
+  }
   .ListTeachers {
-    width: 520px;
-    margin: 50px auto;
+    width: 260px;
+    margin: 0px auto;
     display: grid;
-    grid-gap: 20px;
-    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    grid-template-columns: 250px;
   }
 }
-@media screen and (max-width: 768px) {
 
+@media screen and (min-width: 580px) {
+  article {
+    width: 100%;
+    margin: 50px 0;
+  }
   .ListTeachers {
-    width: 250px;
-    margin: 50px auto;
+    width: 570px;
+    margin: 0px auto;
     display: grid;
     grid-gap: 20px;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 250px);
   }
 }
 </style>
