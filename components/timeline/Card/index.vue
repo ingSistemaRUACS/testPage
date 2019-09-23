@@ -46,6 +46,7 @@ export default {
 
 #description{
   padding: 10px;
+  min-height: 100px;
 }
 
 </style>

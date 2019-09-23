@@ -1,13 +1,13 @@
 <template>
   <section id="timeline">
-    <Card />
-    <Card />
-    <Card />
-    <Card />
-    <Card />
-    <Card />
-    <Card />
-    <Card />
+    <Card class="tm-card" />
+    <Card class="tm-card" />
+    <Card class="tm-card" />
+    <Card class="tm-card" />
+    <Card class="tm-card" />
+    <Card class="tm-card" />
+    <Card class="tm-card" />
+    <Card class="tm-card" />
   </section>
 </template>
 
@@ -21,7 +21,7 @@ export default {
 </script>
 
 <style scoped>
-#timeline>*{
+.tm-card{
   margin-bottom: 20px;
 }
 </style>
