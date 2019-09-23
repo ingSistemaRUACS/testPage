@@ -4,8 +4,8 @@
     <img id="thumbnail" src="@/assets/landscape.png" alt="ImagenNoticia">
 
     <div id="stats">
-      <span id="like-count"><span id="like-num">10</span> Me gustas</span> |
-      <span id="com-count"><span id="com-num">2</span> Comentarios</span>
+      <a href="#"><span id="like-count"><span id="like-num">10</span> Me gustas</span></a> |
+      <a href="#"><span id="com-count"><span id="com-num">2</span> Comentarios</span></a>
     </div>
     <div id="description">
       Lorem ipsum dolor sit amet consectetur adipisicing elit.
