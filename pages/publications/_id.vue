@@ -54,7 +54,7 @@ h2{
 }
 
 #pub-content{
-  font-weight: 300;
+  color:#3f3f3f;
 }
 
 .quote{
@@ -64,7 +64,7 @@ h2{
   padding-left: 10px;
   width: 70%;
   border-left: 2px solid #9b9b9b;
-  color:#69a9ce;
+  color:#999999;
 }
 
 img{
