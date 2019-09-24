@@ -22,7 +22,6 @@ header{
   position: relative;
   overflow: hidden;
   width: 100%;
-  min-height: 60px;
 }
 
 @media(min-width: 800px) {

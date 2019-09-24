@@ -1,7 +1,7 @@
 <template>
   <div class="top-bar">
     <img src="@/assets/UNI.svg" alt="UNI" id="icon-uni"></img>
-    <h1>RUACS | Ingenieria de Sistemas</h1>
+    <h2>RUACS | Ingenieria de Sistemas</h2>
   </div>
 </template>
 
@@ -38,7 +38,7 @@ export default {
   width: 40px;
 }
 
-.top-bar h1{
+.top-bar h2{
   font-size: 1.2em;
   margin-left: 20px;
   margin-top: 0;
