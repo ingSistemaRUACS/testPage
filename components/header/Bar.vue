@@ -1,8 +1,10 @@
 <template>
+<nuxt-link to="/">
   <div class="top-bar">
     <img src="@/assets/UNI.svg" alt="UNI" id="icon-uni"></img>
     <h2>RUACS | Ingenieria de Sistemas</h2>
   </div>
+</nuxt-link>
 </template>
 
 <script>
@@ -38,7 +40,7 @@ export default {
   width: 40px;
 }
 
-.top-bar h2{
+.top-bar > h2{
   font-size: 1.2em;
   margin-left: 20px;
   margin-top: 0;
@@ -51,7 +53,7 @@ export default {
     width: 10%;
   }
 
-  .top-bar h1{
+  .top-bar > h1{
     font-size: 1rem;
   }
 }

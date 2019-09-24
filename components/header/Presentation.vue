@@ -56,15 +56,15 @@ export default {}
     position:inherit;
     height: 90vh;
     justify-items: center;
+
   }
 
   #presentation > #Background-image {
-    position:fixed;
     width: 70vw;
     z-index: 0;
     top: 30vh;
     left: 15vw;
-    opacity: 0.8;
+    opacity: 0.6;
   }
 
   #presentation > #info {
