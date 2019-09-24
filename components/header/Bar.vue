@@ -1,6 +1,6 @@
 <template>
   <div class="top-bar">
-    <img src="@/assets/UNI.svg" alt="UNI"></img>
+    <img src="@/assets/UNI.svg" alt="UNI" id="icon-uni"></img>
     <h1>RUACS | Ingenieria de Sistemas</h1>
   </div>
 </template>
@@ -33,9 +33,26 @@ export default {
   z-index: 1000;
 }
 
+#icon-uni
+{
+  width: 40px;
+}
+
 .top-bar h1{
+  font-size: 1.2em;
   margin-left: 20px;
   margin-top: 0;
   margin-bottom: 0;
+}
+
+@media screen and (max-width: 430px) {
+  #icon-uni
+  {
+    width: 10%;
+  }
+
+  .top-bar h1{
+    font-size: 1rem;
+  }
 }
 </style>

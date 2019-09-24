@@ -1,14 +1,17 @@
 <template>
   <header>
     <Bar />
+    <Presentation />
   </header>
 </template>
 
 <script>
 import Bar from './Bar'
+import Presentation from './Presentation'
 export default {
   components: {
-    Bar
+    Bar,
+    Presentation
   }
 }
 </script>

@@ -1,11 +1,11 @@
 <template>
   <div id="menu-cont">
     <div id="menu">
-      <a href="#">₪</a>
-      <a href="#">₪</a>
-      <a href="#">₪</a>
-      <a href="#">₪</a>
-      <a href="#">₪</a>
+      <nuxt-link to="/"><img src="@/assets/icon-menu/home.svg" alt="home"></nuxt-link>
+      <nuxt-link to="/"><img src="@/assets/icon-menu/info.svg" alt="info"></nuxt-link>
+      <nuxt-link to="/teachers"><img src="@/assets/icon-menu/chalkboard-teacher.svg" alt="teacher"></nuxt-link>
+      <nuxt-link to="/pensum"><img src="@/assets/icon-menu/project-diagram.svg" alt="project"></nuxt-link>
+      <nuxt-link to="/"><img src="@/assets/defaulUser-100.jpg" alt="user"></nuxt-link>
     </div>
     <label id="resp-button">
       <input
@@ -72,19 +72,21 @@ export default {
   flex-direction: column;
   justify-content: space-evenly;
   width: 50px;
-  height: 200px;
+  height: 220px;
   background: #979797;
   transform: translate(-55px);
   color: #fff;
   text-align: center;
   font-size: 2em;
-  border-radius: 5px 0 0 5px;
   transition: transform 0.5s;
 }
 
 #menu>a{
-  transform: rotate(-90deg);
   transition: color ease 0.25s;
+}
+
+#menu>a>img{
+  width: 22px;
 }
 
 #menu>a:hover{
@@ -109,8 +111,6 @@ export default {
   #menu.displayed{
     display: flex;
     transform: translate(5px);
-    border-radius: 0 5px 5px 0;
-    opacity: 0.7;
   }
 
   #menu.displayed+#resp-button #arrow{

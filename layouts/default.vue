@@ -2,6 +2,7 @@
   <div id="container">
     <header>
       <Bar />
+      <Presentation />
       <Menu />
     </header>
     <nuxt />
@@ -11,10 +12,12 @@
 <script>
 import Bar from '@/components/header/Bar'
 import Menu from '@/components/menu/Menu'
+import Presentation from '@/components/header/Presentation'
 
 export default {
   components: {
     Bar,
+    Presentation,
     Menu
   }
 }
