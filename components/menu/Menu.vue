@@ -13,7 +13,7 @@
         name="resp-button"
         id="rb"
         v-model="slideShown"
-        @change="toggleVisible"><span id="arrow">➪</span></label>
+        @change="toggleVisible"><span id="arrow">❯</span></label>
   </div>
 </template>
 
@@ -42,16 +42,17 @@ export default {
   position: fixed;
   top: 60px;
   transform: translate(0, 5px);
+  z-index: 1000;
 }
 
 #resp-button{
   display: none;
   width: 40px;
   height: 40px;
-  background: #007be0a1;
-  color: rgb(0, 0, 0);
-  font-size: 1.5em;
-  border-radius: 5px;
+  background: #000000a1;
+  color: rgb(255, 255, 255);
+  font-size: 1.6em;
+  border-radius: 2px;
   justify-content: center;
   align-items: center;
   user-select: none;
@@ -78,7 +79,7 @@ export default {
   text-align: center;
   font-size: 2em;
   border-radius: 5px 0 0 5px;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s;
 }
 
 #menu>a{
@@ -90,7 +91,7 @@ export default {
   color: rgb(40, 39, 61);
 }
 
-@media(max-width: 820px) {
+@media(max-width: 920px) {
   #resp-button{
     display: flex;
     margin-left: 10px;
@@ -102,6 +103,7 @@ export default {
 
   #menu{
     display: none;
+    background: #3f3f3f;
   }
 
   #menu.displayed{

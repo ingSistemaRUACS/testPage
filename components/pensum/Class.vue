@@ -67,7 +67,7 @@ export default {
   }
 }
 </script>
-<style scope>
+<style scoped>
 .class {
   position: relative;
   display: inline;

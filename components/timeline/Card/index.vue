@@ -7,6 +7,9 @@
       <a href="#"><span id="like-count"><span id="like-num">10</span> Me gustas</span></a> |
       <a href="#"><span id="com-count"><span id="com-num">2</span> Comentarios</span></a>
     </div>
+
+    <strong class="titl">Un Titulo Comun</strong>
+
     <div id="description">
       Lorem ipsum dolor sit amet consectetur adipisicing elit.
       Repellendus autem doloremque libero non voluptas amet esse saepe,
@@ -30,6 +33,21 @@ export default {
   flex-direction: column;
   box-shadow: 3px 9px 9px -9px rgba(0, 0, 0, 0.57);
   font-size: 0.8em;
+  transition: box-shadow 0.5s ease;
+  box-sizing: border-box;
+  border: 1px solid rgba(174, 174, 174, 0.44);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.card .titl{
+  margin-top: 10px;
+  margin-left: 2%;
+}
+
+.card:hover{
+  transform: translate(-5, -5);
+  box-shadow: 3px 13px 13px -9px rgba(0, 0, 0, 0.57);
 }
 
 #thumbnail{

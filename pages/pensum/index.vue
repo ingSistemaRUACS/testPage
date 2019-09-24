@@ -20,11 +20,12 @@ export default {
   }
 }
 </script>
-<style scope>
+<style scoped>
+article{
+  width: 100%;
+}
 @media screen and (min-width: 320px) and (max-width: 479px) {
   article {
-    width: 100%;
-    margin: 50px 0px;
     display: flex;
     justify-items: center;
   }
@@ -38,7 +39,6 @@ export default {
 @media screen and (min-width: 480px) and (max-width: 719px) {
   article {
     width: 100%;
-    margin: 50px 0px;
   }
   .ListClass {
     width: 360px;
@@ -52,7 +52,6 @@ export default {
 @media screen and (min-width: 720px) {
   article {
     width: 100%;
-    margin: 50px 0px;
   }
   .ListClass {
     width: 710px;

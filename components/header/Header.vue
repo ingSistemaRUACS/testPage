@@ -21,4 +21,10 @@ header{
   width: 100%;
   min-height: 60px;
 }
+
+@media(min-width: 800px) {
+  header h1{
+    font-size: 0.2em;
+  }
+}
 </style>

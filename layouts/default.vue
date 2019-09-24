@@ -23,8 +23,10 @@ export default {
 #container{
   background: #fff;
   margin: 0 auto;
+  padding: 20px 0;
   position: relative;
-  max-width: 700px;
+  max-width: 800px;
+  box-shadow: 0px 0px 5px 2px rgb(147, 147, 147);
 }
 
 header{
@@ -41,7 +43,7 @@ html {
 
 body {
   margin: 0;
-  background-color: #EEEEEE;
+  background-color: rgb(235, 235, 235);
 }
 
 a{
