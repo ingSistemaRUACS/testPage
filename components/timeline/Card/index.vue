@@ -8,7 +8,7 @@
       <a href="#"><span id="com-count"><span id="com-num">2</span> Comentarios</span></a>
     </div>
 
-    <strong class="titl">Un Titulo Comun</strong>
+    <nuxt-link to="/publications/1"><strong class="titl">Un Titulo Comun</strong></nuxt-link>
 
     <div id="description">
       Lorem ipsum dolor sit amet consectetur adipisicing elit.

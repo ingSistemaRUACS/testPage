@@ -5,7 +5,6 @@
       <a href="#">₪</a>
       <a href="#">₪</a>
       <a href="#">₪</a>
-      <a href="#">₪</a>
     </div>
     <label id="resp-button">
       <input
@@ -72,13 +71,13 @@ export default {
   flex-direction: column;
   justify-content: space-evenly;
   width: 50px;
-  height: 200px;
+  /* height: 200px; */
   background: #979797;
   transform: translate(-55px);
   color: #fff;
   text-align: center;
   font-size: 2em;
-  border-radius: 5px 0 0 5px;
+  border-radius: 2px 0 0 2px;
   transition: transform 0.5s;
 }
 
@@ -97,10 +96,6 @@ export default {
     margin-left: 10px;
   }
 
-  #resp-button:active{
-    background: #fff;
-  }
-
   #menu{
     display: none;
     background: #3f3f3f;
@@ -109,7 +104,7 @@ export default {
   #menu.displayed{
     display: flex;
     transform: translate(5px);
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 2px 2px 0;
     opacity: 0.7;
   }
 
