@@ -1,10 +1,10 @@
 <template>
-<nuxt-link to="/">
   <div class="top-bar">
+    <nuxt-link id="link-bar" to="/">
     <img src="@/assets/UNI.svg" alt="UNI" id="icon-uni"></img>
     <h2>RUACS | Ingenieria de Sistemas</h2>
+    </nuxt-link>
   </div>
-</nuxt-link>
 </template>
 
 <script>
@@ -35,12 +35,16 @@ export default {
   z-index: 1000;
 }
 
+#link-bar {
+  display:inherit;
+  align-items: center;
+}
 #icon-uni
 {
   width: 40px;
 }
 
-.top-bar > h2{
+.top-bar > a > h2{
   font-size: 1.2em;
   margin-left: 20px;
   margin-top: 0;
