@@ -5,14 +5,12 @@
 </template>
 <script>
 import Timeline from '@/components/timeline/Timeline'
-
 export default {
   components: {
     Timeline
   }
 }
 </script>
-
 <style>
 #tm{
   width: 60%;
