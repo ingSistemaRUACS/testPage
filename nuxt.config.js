@@ -61,6 +61,6 @@ export default {
     }
   },
   generate: {
-    dir: 'public'
+    dir: 'docs'
   }
 }
