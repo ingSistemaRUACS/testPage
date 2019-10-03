@@ -2,7 +2,7 @@ import Autentication from '../data/Autentication'
 const Auth = new Autentication()
 
 export const state = () => ({
-  user: null
+  user: ''
 })
 
 export const mutations = {
@@ -12,24 +12,30 @@ export const mutations = {
 }
 
 export const actions = {
-  signIn ({ commit }) {},
+  signIn ({ commit }) { },
   verifyCode ({ commit }, code) {
     console.log(code.substring(0, 4))
     // this.$router.push('/login')
   },
   async login ({ commit }, type) {
-    // const result = await Auth.login(type)
-    // console.log(result.user)
-    const user = await Auth.getUser()
-    commit('editUser', user)
-    this.$router.push('/')
+    const result = await Auth.login(type)
+    if (result) {
+      commit('editUser', result)
+      this.$router.push('/')
+    }
   },
-  logaut ({ commit }) {}
+  ChargeUser ({ commit, state }) {
+    if (!state.user) {
+      const user = Auth.getUser()
+      commit('editUser', user)
+    }
+  },
+  logaut ({ commit }) { }
 }
 
 export const getters = {
   isAuthenticated (state) {
-    return !!state.user
+    return Auth.isAuthenticated()
   },
   loggedUser (state) {
     return state.user
