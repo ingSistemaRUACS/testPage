@@ -5,7 +5,7 @@
       <nuxt-link class="icon-menu" to="/"><img src="@/assets/icon-menu/info.svg" alt="info"></nuxt-link>
       <nuxt-link class="icon-menu" to="/teachers"><img src="@/assets/icon-menu/chalkboard-teacher.svg" alt="teacher"></nuxt-link>
       <nuxt-link class="icon-menu" to="/pensum"><img src="@/assets/icon-menu/project-diagram.svg" alt="project"></nuxt-link>
-      <nuxt-link id="icon-user" to="/login"><img :src="photoUser " alt="user"></nuxt-link>
+      <nuxt-link id="icon-user" to="/login"><img v-if="loggedUser" :src="loggedUser.photo" alt="user"><img v-else src="@/assets/defaulUser-100.jpg" alt="user"></nuxt-link>
     </div>
     <label id="resp-button">
       <input
@@ -33,19 +33,12 @@ export default {
     toggleClassDisplayed () {
       const menEl = document.querySelector('#menu')
       menEl.classList.toggle('displayed')
-      console.log(this.userData);
     }
   },
   computed: {
-    ...mapGetters({userData:'auth/loggedUser'}),
-    photoUser(){
-      if (!this.userData.photo) {
-        return this.userData.photo;
-      } else {
-        return require('@/assets/defaulUser-100.jpg')
-      }
-    }
+    ...mapGetters({loggedUser:'auth/loggedUser'}),
   },
+  
 }
 </script>
 
