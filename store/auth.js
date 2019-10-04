@@ -2,7 +2,8 @@ import Autentication from '../data/Autentication'
 const Auth = new Autentication()
 
 export const state = () => ({
-  user: ''
+  user: null,
+  info: null
 })
 
 export const mutations = {
@@ -24,9 +25,9 @@ export const actions = {
       this.$router.push('/')
     }
   },
-  ChargeUser ({ commit, state }) {
+  async ChargeUser ({ commit, state }) {
     if (!state.user) {
-      const user = Auth.getUser()
+      const user = await Auth.getUser()
       commit('editUser', user)
     }
   },

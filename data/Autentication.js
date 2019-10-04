@@ -3,7 +3,7 @@ import firebase from 'firebase'
 export default class Autentication {
   constructor () {
     this.provider = new firebase.auth.GoogleAuthProvider()
-    this.user = null
+    this.user = 'paja de async null'
   }
 
   async login (type) {
@@ -12,15 +12,15 @@ export default class Autentication {
     if (type === 'Google') {
       resultAuth = await firebase.auth().signInWithPopup(this.provider)
 
-      return { name: resultAuth.user.displayName, photo: resultAuth.user.photoURL }
+      return { name: resultAuth.user.displayName, photo: resultAuth.user.photoURL, email: resultAuth.user.email, phone: resultAuth.user.phoneNumber }
     }
     return null
   }
 
-  getUser () {
-    this.user = firebase.auth().currentUser
+  async getUser () {
+    this.user = await firebase.auth().currentUser
     if (this.user) {
-      return { name: this.user.displayName, photo: this.user.photoURL }
+      return { name: this.user.displayName, photo: this.user.photoURL, email: this.user.email, phone: this.user.phoneNumber }
     }
     return null
   }
