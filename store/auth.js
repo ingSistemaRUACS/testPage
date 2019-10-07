@@ -3,12 +3,15 @@ const Auth = new Autentication()
 
 export const state = () => ({
   user: null,
-  info: null
+  pagAccount: ''
 })
 
 export const mutations = {
   editUser (state, user) {
     state.user = user
+  },
+  ChangaPagAccount (state, pag) {
+    state.pagAccount = pag
   }
 }
 
@@ -40,5 +43,8 @@ export const getters = {
   },
   loggedUser (state) {
     return state.user
+  },
+  pagAccount (state) {
+    return state.pagAccount
   }
 }

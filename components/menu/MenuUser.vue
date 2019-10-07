@@ -1,7 +1,7 @@
 <template>
   <section id="MenuUser">
     <div id="box-menu">
-      <nuxt-link class="ItemMenuUser" v-for="(item, index) in listMenu" :key="index" :to="item.link">{{
+      <nuxt-link :class="{'ItemActiveMenu':pagAccount === item.title}" class="ItemMenuUser" v-for="(item, index) in listMenu" :key="index" :to="item.link">{{
       item.title
     }}</nuxt-link>
     <div id="box-opcion" @click="clickOpcion" v-click-outside="hide">
@@ -15,16 +15,17 @@
   </section>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import ClickOutside from "vue-click-outside";
 
 export default {
   data() {
     return {
       listMenu: [
-        { title: "Eventos", link: "/" },
-        { title: "Publicaciones", link: "/" },
-        { title: "Usuarios", link: "/" },
-        { title: "Docentes", link: "/" }
+        { title: "Eventos", link: "/account/myEvent" },
+        { title: "Publicaciones", link: "/account/myNews" },
+        { title: "Usuarios", link: "/account/systemUser" },
+        { title: "Docentes", link: "/account/sistemTeacher" }
       ],
       viewOpcion: false
     };
@@ -36,6 +37,11 @@ export default {
     hide() {
       this.viewOpcion = false;
     }
+  },
+  computed: {
+    ...mapGetters({
+      pagAccount:'auth/pagAccount'
+    })
   },
   directives: {
     ClickOutside
@@ -52,6 +58,12 @@ export default {
   overflow-x: auto;
 }
 
+.ItemActiveMenu {
+  font-weight: bold;
+  color: #7904ed;
+  background-color: #ebebeb;
+}
+
 #box-menu {
   width: 800px;
   max-width: 800px;
@@ -62,6 +74,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-right: solid #4b4b4b 1px;
 }
 
 #box-opcion
