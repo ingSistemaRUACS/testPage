@@ -1,18 +1,11 @@
 import firebase from 'firebase/app'
+import fireConfig from '~/fireconfig'
 
 let app = null
 if (!firebase.apps.length) {
-  const config = {
-    apiKey: 'AIzaSyAQQqJb4BHTl2ZhW-zalF4Az_84RfCsvZk',
-    authDomain: 'paguniruacs.firebaseapp.com',
-    databaseURL: 'https://paguniruacs.firebaseio.com',
-    projectId: 'paguniruacs',
-    storageBucket: '',
-    messagingSenderId: '951861054805',
-    appId: '1:951861054805:web:145377b2dd6529861033dc'
-  }
-
-  app = firebase.initializeApp(config)
+  app = firebase.initializeApp(fireConfig)
 }
 
 export const db = app.database()
+export const GoogleProvider = new firebase.auth.GoogleAuthProvider()
+export const auth = firebase.auth()
