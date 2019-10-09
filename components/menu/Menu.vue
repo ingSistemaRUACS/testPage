@@ -36,7 +36,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({loggedUser:'auth/loggedUser'}),
+    ...mapGetters({loggedUser:'loggedUser'}),
   },
   
 }

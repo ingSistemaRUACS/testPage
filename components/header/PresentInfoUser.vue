@@ -16,7 +16,7 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters({
-      loggedUser: "auth/loggedUser"
+      loggedUser: "loggedUser"
     })
   }
 };

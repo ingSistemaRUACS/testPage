@@ -24,11 +24,6 @@ export default {
   },
   methods: {
     ...mapActions({ ChargeUser: "auth/ChargeUser" })
-  },
-  beforeCreate() {
-    setTimeout(() => {
-      this.ChargeUser();
-    }, 1000);
   }
 };
 </script>

@@ -8,14 +8,14 @@
       <img id="icon-cog" src="@/assets/icon-menu/cog.svg" />
       <ul v-if="viewOpcion">
         <li><nuxt-link to="/">Opciones</nuxt-link></li>
-        <li><a href="#">Salir</a></li>
+        <li><a href="#" @click="Logout">Salir</a></li>
       </ul>
     </div>
     </div>
   </section>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import ClickOutside from "vue-click-outside";
 
 export default {
@@ -36,11 +36,12 @@ export default {
     },
     hide() {
       this.viewOpcion = false;
-    }
+    },
+    ...mapActions(['Logout'])
   },
   computed: {
     ...mapGetters({
-      pagAccount:'auth/pagAccount'
+      pagAccount:'loggedUser'
     })
   },
   directives: {
