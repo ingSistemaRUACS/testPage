@@ -1,5 +1,5 @@
 export default function ({ store, redirect }) {
-  if (store.getters['auth/isAuthenticated']) {
-    redirect('/account/myEvent')
+  if (!store.getters.isAuthenticated) {
+    redirect('/login')
   }
 }

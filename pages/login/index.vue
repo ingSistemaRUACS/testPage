@@ -13,7 +13,7 @@
 import { mapActions } from 'vuex'
 
 export default {
-  middleware:'verifyAuthenticated',
+  middleware:'verifyLogin',
   layout: 'register',
   data () {
     return {
@@ -25,9 +25,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions({
-      login:'auth/login'
-    })
+    ...mapActions(['login'])
   }
 }
 </script>
