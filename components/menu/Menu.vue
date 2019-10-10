@@ -2,7 +2,7 @@
   <div id="menu-cont">
     <div id="menu">
       <nuxt-link class="icon-menu" to="/"><img src="@/assets/icon-menu/home.svg" alt="home"></nuxt-link>
-      <nuxt-link class="icon-menu" to="/"><img src="@/assets/icon-menu/info.svg" alt="info"></nuxt-link>
+      <nuxt-link class="icon-menu" to="/info"><img src="@/assets/icon-menu/info.svg" alt="info"></nuxt-link>
       <nuxt-link class="icon-menu" to="/teachers"><img src="@/assets/icon-menu/chalkboard-teacher.svg" alt="teacher"></nuxt-link>
       <nuxt-link class="icon-menu" to="/pensum"><img src="@/assets/icon-menu/project-diagram.svg" alt="project"></nuxt-link>
       <nuxt-link id="icon-user" to="/login"><img v-if="loggedUser" :src="loggedUser.photo" alt="user"><img v-else src="@/assets/defaulUser-100.jpg" alt="user"></nuxt-link>

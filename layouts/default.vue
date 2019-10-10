@@ -32,6 +32,7 @@ export default {
   background: #fff;
   margin: 0 auto;
   padding: 20px 0;
+  padding-bottom: 0;
   position: relative;
   max-width: 800px;
   box-shadow: 0px 0px 5px 2px rgb(147, 147, 147);
