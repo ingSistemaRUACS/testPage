@@ -7,7 +7,7 @@
     <div id="box-opcion" @click="clickOpcion" v-click-outside="hide">
       <img id="icon-cog" src="@/assets/icon-menu/cog.svg" />
       <ul v-if="viewOpcion">
-        <li><nuxt-link to="/">Opciones</nuxt-link></li>
+        <li><nuxt-link to="/account/option">Opciones</nuxt-link></li>
         <li><a href="#" @click="Logout">Salir</a></li>
       </ul>
     </div>
