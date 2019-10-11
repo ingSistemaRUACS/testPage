@@ -41,7 +41,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      pagAccount:'loggedUser'
+      pagAccount:'getPagAccount'
     })
   },
   directives: {
@@ -61,8 +61,8 @@ export default {
 
 .ItemActiveMenu {
   font-weight: bold;
-  color: #7904ed;
-  background-color: #ebebeb;
+  color: #ebebeb;
+  background-color: #7904ed;
 }
 
 #box-menu {

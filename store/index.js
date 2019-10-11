@@ -15,6 +15,9 @@ const auth = () => {
       },
       loggedUser (state) {
         return state.user
+      },
+      getPagAccount (state) {
+        return state.pagAccount
       }
     },
     actions: {

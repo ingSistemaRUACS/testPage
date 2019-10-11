@@ -11,7 +11,7 @@ export default {
     middleware:'verifyAuthenticated',
     methods:{
         ...mapMutations({
-            ChangaPagAccount:'auth/ChangaPagAccount'
+            ChangaPagAccount:'ChangaPagAccount'
         })
     },
     created(){

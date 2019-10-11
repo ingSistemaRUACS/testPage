@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 
 import Bar from "@/components/header/Bar";
 import Menu from "@/components/menu/Menu";
@@ -24,16 +23,8 @@ export default {
     Menu,
     MenuUser,
     Presentation
-  },
-  methods: {
-    ...mapActions({ ChargeUser: "auth/ChargeUser" })
-  },
-  beforeCreate() {
-    setTimeout(() => {
-      this.ChargeUser();
-    }, 1000);
   }
-};
+}
 </script>
 <style scoped>
 #container {
