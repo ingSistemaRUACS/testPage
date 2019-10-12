@@ -1,11 +1,11 @@
 <template>
   <div id="menu-cont">
     <div id="menu">
-      <nuxt-link to="/"><img src="@/assets/icon-menu/home.svg" alt="home"></nuxt-link>
-      <nuxt-link to="/"><img src="@/assets/icon-menu/info.svg" alt="info"></nuxt-link>
-      <nuxt-link to="/teachers"><img src="@/assets/icon-menu/chalkboard-teacher.svg" alt="teacher"></nuxt-link>
-      <nuxt-link to="/pensum"><img src="@/assets/icon-menu/project-diagram.svg" alt="project"></nuxt-link>
-      <nuxt-link to="/"><img src="@/assets/defaulUser-100.jpg" alt="user"></nuxt-link>
+      <nuxt-link class="icon-menu" to="/"><img src="@/assets/icon-menu/home.svg" alt="home"></nuxt-link>
+      <nuxt-link class="icon-menu" to="/info"><img src="@/assets/icon-menu/info.svg" alt="info"></nuxt-link>
+      <nuxt-link class="icon-menu" to="/teachers"><img src="@/assets/icon-menu/chalkboard-teacher.svg" alt="teacher"></nuxt-link>
+      <nuxt-link class="icon-menu" to="/pensum"><img src="@/assets/icon-menu/project-diagram.svg" alt="project"></nuxt-link>
+      <nuxt-link id="icon-user" to="/login"><img v-if="loggedUser" :src="loggedUser.photo" alt="user"><img v-else src="@/assets/defaulUser-100.jpg" alt="user"></nuxt-link>
     </div>
     <label id="resp-button">
       <input
@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   data () {
     return {
@@ -32,7 +34,11 @@ export default {
       const menEl = document.querySelector('#menu')
       menEl.classList.toggle('displayed')
     }
-  }
+  },
+  computed: {
+    ...mapGetters({loggedUser:'loggedUser'}),
+  },
+  
 }
 </script>
 
@@ -81,12 +87,20 @@ export default {
   transition: transform 0.5s;
 }
 
-#menu>a{
+#menu>.icon-menu{
   transition: color ease 0.25s;
 }
 
-#menu>a>img{
+#menu>.icon-menu>img{
   width: 22px;
+}
+
+#icon-user{
+  height: 50px;
+}
+
+#icon-user>img{
+  width: 100%;
 }
 
 #menu>a:hover{
