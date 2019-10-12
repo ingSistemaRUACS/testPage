@@ -1,40 +1,65 @@
 <template>
   <main>
     <h1 id="pub-title">
-      Una Publicacion Común
+      {{ publicacion.titulo }}
     </h1>
     <section id="pub-info">
-      <span class="pub-detail" id="pub-author">Por: Luis Gonzalez</span> |
-      <span class="pub-detail" id="pub-date">23 de Septiembre de 2019</span>
+      <span class="pub-detail" id="pub-author">Por: {{ publicacion.autor }}</span> |
+      <span class="pub-detail" id="pub-date">{{ publicacion.fecha }}</span>
     </section>
-    <div id="pub-content">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi tempore numquam quibusdam doloremque dolor rem eligendi dolorum iste reiciendis quidem. Et nostrum aliquam voluptatum a, illum vitae mollitia dignissimos eius, asperiores ad recusandae. Odio exercitationem dolore sapiente, cumque harum fuga nisi illo dicta, porro provident tempora ad totam aspernatur corrupti.</p>
-      <img src="@/assets/landscape.png" alt="landscape">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi tempore numquam quibusdam doloremque dolor rem eligendi dolorum iste reiciendis quidem. Et nostrum aliquam voluptatum a, illum vitae mollitia dignissimos eius, asperiores ad recusandae. Odio exercitationem dolore sapiente, cumque harum fuga nisi illo dicta, porro provident tempora ad totam aspernatur corrupti.</p>
-      <h2>Primer titulo</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est rem quasi et maxime, similique vitae facere explicabo itaque modi molestias odio distinctio minus, harum velit hic ipsam nostrum fugit libero repudiandae porro placeat numquam nihil ratione earum. Temporibus deleniti quae sint cum neque non, nesciunt totam aliquam dolore recusandae repudiandae, laborum vero ducimus rerum voluptate ab unde ratione perferendis modi vel maxime quas! Perspiciatis corrupti ratione incidunt debitis dolores doloribus explicabo tempore voluptas minima similique, reiciendis aliquid deleniti, eos delectus illo. Perspiciatis similique fugiat quia, aut repellendus quisquam sunt corporis asperiores culpa mollitia ex odit ab error harum impedit dolorum!</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est rem quasi et maxime, similique vitae facere explicabo itaque modi molestias odio distinctio minus, harum velit hic ipsam nostrum fugit libero repudiandae porro placeat numquam nihil ratione earum. Temporibus deleniti quae sint cum neque non, nesciunt totam aliquam dolore recusandae repudiandae, laborum vero ducimus rerum voluptate ab unde ratione perferendis modi vel maxime quas! Perspiciatis corrupti ratione incidunt debitis dolores doloribus explicabo tempore voluptas minima similique, reiciendis aliquid deleniti, eos delectus illo. Perspiciatis similique fugiat quia, aut repellendus quisquam sunt corporis asperiores culpa mollitia ex odit ab error harum impedit dolorum!</p>
-      <img src="@/assets/logo-ls.png" alt="LOGO_LS">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi tempore numquam quibusdam doloremque dolor rem eligendi dolorum iste reiciendis quidem. Et nostrum aliquam voluptatum a, illum vitae mollitia dignissimos eius, asperiores ad recusandae. Odio exercitationem dolore sapiente, cumque harum fuga nisi illo dicta, porro provident tempora ad totam aspernatur corrupti.</p>
-      <h2>Segundo titulo</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi tempore numquam quibusdam doloremque dolor rem eligendi dolorum iste reiciendis quidem. Et nostrum aliquam voluptatum a, illum vitae mollitia dignissimos eius, asperiores ad recusandae. Odio exercitationem dolore sapiente, cumque harum fuga nisi illo dicta, porro provident tempora ad totam aspernatur corrupti.</p>
-      <p class="quote">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint non debitis cumque dolor hic doloremque nostrum deserunt eveniet explicabo maiores libero repudiandae repellat ea magnam reprehenderit nemo, nisi modi maxime vitae vel? Aut, enim voluptas dolore itaque sint soluta perspiciatis iure autem? Quasi, quos voluptate.
-      </p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est rem quasi et maxime, similique vitae facere explicabo itaque modi molestias odio distinctio minus, harum velit hic ipsam nostrum fugit libero repudiandae porro placeat numquam nihil ratione earum. Temporibus deleniti quae sint cum neque non, nesciunt totam aliquam dolore recusandae repudiandae, laborum vero ducimus rerum voluptate ab unde ratione perferendis modi vel maxime quas! Perspiciatis corrupti ratione incidunt debitis dolores doloribus explicabo tempore voluptas minima similique, reiciendis aliquid deleniti, eos delectus illo. Perspiciatis similique fugiat quia, aut repellendus quisquam sunt corporis asperiores culpa mollitia ex odit ab error harum impedit dolorum!</p>
-      <h2>Tercer titulo</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est rem quasi et maxime, similique vitae facere explicabo itaque modi molestias odio distinctio minus, harum velit hic ipsam nostrum fugit libero repudiandae porro placeat numquam nihil ratione earum. Temporibus deleniti quae sint cum neque non, nesciunt totam aliquam dolore recusandae repudiandae, laborum vero ducimus rerum voluptate ab unde ratione perferendis modi vel maxime quas! Perspiciatis corrupti ratione incidunt debitis dolores doloribus explicabo tempore voluptas minima similique, reiciendis aliquid deleniti, eos delectus illo. Perspiciatis similique fugiat quia, aut repellendus quisquam sunt corporis asperiores culpa mollitia ex odit ab error harum impedit dolorum!</p>
-    </div>
+    <div id="pub-content" v-html="textDom.contenido"></div>
   </main>
 </template>
 
 <script>
+import Publicacion from '@/data/publicacion/publicacion'
+import showdown from 'showdown'
+
+const conv = new showdown.Converter({
+  headerLevelStart: 2,
+  simplifiedAutoLink: true,
+  extensions: [
+    {
+      type: 'lang',
+      regex: /\^\^youtube (\S+)/g,
+      replace: '<iframe width="560" height="315" src="https://www.youtube.com/embed/$1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+    }
+  ]
+})
+
 export default {
-  layout: 'publication'
+  layout: 'publication',
+  data () {
+    return {
+      publicacion: new Publicacion(
+        'Sin Titulo',
+        'Nadie',
+        'El contenido de la publicacion',
+        '12-12-1967'
+      ),
+      textDom: {
+        contenido: 'El contenido de la publicacion'
+      }
+    }
+  },
+  asyncData ({ $axios }) {
+    const url = 'http://localhost:8000/'
+    const result = {
+      contenido: 'Vacio'
+    }
+
+    $axios.$get(url + 'publicacion1.md')
+      .then((res) => {
+        result.contenido = conv.makeHtml(res)
+      })
+    return {
+      textDom: result // result || 'Sin Contenido'
+    }
+  }
 }
 </script>
 
-<style scoped>
+<style>
 #pub-info{
   text-align: right;
   margin-bottom: 30px;
@@ -55,19 +80,17 @@ h2{
 
 #pub-content{
   color:#3f3f3f;
+  min-height: 500px;
 }
 
-.quote{
-  margin: 30px 0;
-  margin-left: 30px;
-  padding: 10px 0;
-  padding-left: 10px;
-  width: 70%;
-  border-left: 2px solid #9b9b9b;
-  color:#999999;
+#pub-content img{
+  margin: 30px auto;
+  display: block;
+  max-width: 95%;
+  max-height: 60vh;
 }
 
-img{
+#pub-content iframe{
   margin: 30px auto;
   display: block;
   max-width: 95%;
