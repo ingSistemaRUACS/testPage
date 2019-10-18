@@ -56,7 +56,7 @@
           title="Carnet"
           message="Por favor no utlizar separadores como - "
           v-model="carnet"
-          :disabled="DesactiveDataStudent"
+          :disabled="DesactiveDataStudent || verify"
         />
         <Input
           type="text"

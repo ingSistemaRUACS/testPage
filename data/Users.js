@@ -6,23 +6,26 @@ export default class Users {
     return new Promise((resolve, reject) => {
       db.ref('menssage/validuser').on('value', (e) => {
         const List = e.val()
-        const max = Object.keys(List).length
-        const ListUser = []
-        let count = 0
-        for (const id in List) {
-          db.ref(`profile/student/${id}`).on('value', (e) => {
-            const user = e.val()
-            user.id = id
-            user.name = List[id].name
-            user.photo = List[id].photo
-            ListUser.push(user)
-            count++
+        if (List) {
+          const max = Object.keys(List).length
+          const ListUser = []
+          let count = 0
+          for (const id in List) {
+            db.ref(`profile/student/${id}`).on('value', (e) => {
+              const user = e.val()
+              user.id = id
+              user.name = List[id].name
+              user.photo = List[id].photo
+              ListUser.push(user)
+              count++
 
-            if (count >= max) {
-              resolve(ListUser)
-            }
-          })
+              if (count >= max) {
+                resolve(ListUser)
+              }
+            })
+          }
         }
+        resolve(null)
       })
     })
   }

@@ -50,7 +50,10 @@ export default {
   },
   watch:{
     getListVerify(val){
-      this.length = val.length
+      if (val) {
+        this.length = val.length
+      }
+      
     }
   },
   created() {
