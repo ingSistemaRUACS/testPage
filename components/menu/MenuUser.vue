@@ -89,7 +89,7 @@ export default {
   background-color: #fff;
   list-style: none;
   padding: 0;
-  bottom: -75px;
+  margin-top: 0px;
   box-shadow: 0px 0px 5px 2px rgb(147, 147, 147);
 }
 #box-opcion > ul > li
@@ -102,5 +102,18 @@ export default {
 #icon-cog {
   width: 40px;
   margin: 5px 12px;
+}
+
+@media(max-width: 800px) {
+  #box-menu {
+  width: 100%;
+  grid-template-columns: repeat(3,1fr) auto;
+}
+}
+@media(max-width: 500px) {
+  #box-menu {
+  width: 100%;
+  grid-template-columns: repeat(2,1fr) auto;
+}
 }
 </style>
