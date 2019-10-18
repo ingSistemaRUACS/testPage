@@ -22,10 +22,8 @@ export default {
   data() {
     return {
       listMenu: [
-        { title: "Eventos", link: "/account/myEvent" },
         { title: "Publicaciones", link: "/account/myNews" },
-        { title: "Usuarios", link: "/account/systemUser" },
-        { title: "Docentes", link: "/account/sistemTeacher" }
+        { title: "Usuarios", link: "/account/systemUser" }
       ],
       viewOpcion: false
     };
@@ -69,7 +67,7 @@ export default {
   width: 800px;
   max-width: 800px;
   display: grid;
-  grid-template-columns: repeat(4,23%) 8% 
+  grid-template-columns: repeat(3,1fr) auto;
 }
 #MenuUser > #box-menu >.ItemMenuUser{
   display: flex;
@@ -80,6 +78,7 @@ export default {
 
 #box-opcion
 {
+  grid-column: 4;
   height: 50px;
 }
 

@@ -1,6 +1,5 @@
 export default function ({ store, redirect }) {
   if (store.getters.isAuthenticated) {
-    redirect('/account/myEvent')
+    redirect('/account/myNews')
   }
 }
-
