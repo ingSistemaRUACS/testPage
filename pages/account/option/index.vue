@@ -3,36 +3,102 @@
     <h1 id="title-option">Opciones de usuario</h1>
     <section>
       <h2>Datos personales</h2>
+      <button
+        v-if="DesactiveDataUser"
+        class="btn-edit"
+        @click="() => (DesactiveDataUser = false)"
+      >
+        <img src="@/assets/option/edit.svg" alt="" srcset="" />
+      </button>
+      <div id="photo-perfil">
+        <img :src="loggedUser.photo" alt="" />
+      </div>
       <section id="data-user">
-        <div id="photo-perfil">
-          <img :src="loggedUser.photo" alt="" />
-          <input type="button" value="Editar foto de perfil" />
-        </div>
-        <div id="info-user">
-          <Input type="text" title="Nombre" :value="name" />
-          <Input
-            type="text"
-            title="Email"
-            :value="loggedUser.email"
-            :disabled="true"
-          />
-          <Input type="text" title="Telefono" :value="loggedUser.phone" />
-        </div>
+        <Input
+          type="text"
+          title="Nombre"
+          message="Ingrese el nombre completo"
+          :value="name"
+          :disabled="DesactiveDataUser"
+        />
+        <Input
+          type="text"
+          title="Email"
+          :value="loggedUser.email"
+          :disabled="true"
+        />
+        <Input
+          type="text"
+          title="Telefono"
+          :value="loggedUser.phone"
+          :disabled="DesactiveDataUser"
+        />
+        <button
+          v-if="!DesactiveDataUser"
+          @click="canceltUserData"
+          class="submit"
+        >
+          Cancelar
+        </button>
+        <button v-if="!DesactiveDataUser" class="submit" @click="UpdateUserData">Aceptar</button>
       </section>
       <h2>Datos de estudiantes</h2>
-      <div id="info-student">
-        <Input type="text" title="Carnet" />
-        <Input type="text" title="Seccion" />
-      </div>
+      <button
+        v-if="DesactiveDataStudent"
+        class="btn-edit"
+        @click="() => (DesactiveDataStudent = false)"
+      >
+        <img src="@/assets/option/edit.svg" alt="" srcset="" />
+      </button>
+      <section id="info-student">
+        <Input
+          type="text"
+          title="Carnet"
+          message="Por favor no utlizar separadores como - "
+          v-model="carnet"
+          :disabled="DesactiveDataStudent"
+        />
+        <Input
+          type="text"
+          title="Seccion"
+          message="Por favor no utlizar separadores como - "
+          v-model="section"
+          :disabled="DesactiveDataStudent"
+        />
+        <button
+          v-if="!DesactiveDataStudent"
+          @click="cancelStudentData"
+          class="submit"
+        >
+          Cancelar
+        </button>
+        <button
+          v-if="!DesactiveDataStudent"
+          @click="submitStudent"
+          class="submit"
+        >
+          Aceptar
+        </button>
+      </section>
       <h2>Verificar cuenta</h2>
-      <div id="verify-user">
-        <p>
-          Porfavor registrar primero un carnet y seccion antes de Verificar la
-          cuenta estos serviran para validarte como estudiantes de la UNI.
+      <section id="verify-user">
+        <p v-if="!verify && !StockMessage">
+          Por favor registrar primero su carnet y seccion antes de solicitar la
+          verificacion de la cuenta, esto servira para validarte como
+          estudiantes de la UNI.
         </p>
-        <p>Su cuenta ya fue verificada.</p>
-        <button>Verificar</button>
-      </div>
+        <p v-if="verify && StockMessage">Su cuenta ya fue verificada.</p>
+        <p v-if="!verify && StockMessage">Esperando verificacion.</p>
+        <button v-if="!verify && !StockMessage" class="submit" @click="VerifyUser()">Solicitar</button>
+      </section>
+      <h2>Eliminar cuenta</h2>
+      <section id="delete-user">
+        <p>
+          Si elimina su cuenta todos los datos y eventos en los que este
+          participando seran eliminados
+        </p>
+        <button class="submit" @click="UserRemove">Eliminar</button>
+      </section>
     </section>
   </article>
 </template>
@@ -46,21 +112,71 @@ export default {
   data() {
     return {
       name: "",
-      DesactiveName: true,
-      DesactivePhone: true,
-      DesactiveCarnet: true,
-      DesactiveSection: true
+      phone: "",
+      verify: false,
+      section: "",
+      carnet: "",
+      DesactiveDataUser: true,
+      DesactiveDataStudent: true
     };
   },
   computed: {
     ...mapGetters({
-      loggedUser: "loggedUser"
+      loggedUser: "loggedUser",
+      dataStudent: "getDataStudent",
+      StockMessage:'geStockMessage'
     })
   },
+  methods: {
+    ...mapActions(["UpdateUser", "UpdateStudentData", "ChargeStudentData",'VerifyUser','StockMessageVerifyUser','UserRemove']),
+    canceltUserData() {
+      this.DesactiveDataUser = true;
+      this.phone = this.loggedUser.phone;
+      this.name = this.FormatName();
+    },
+    cancelStudentData() {
+      this.DesactiveDataStudent = true;
+      if (!this.student) {
+        this.section = this.dataStudent.section;
+        this.carnet = this.dataStudent.carnet;
+      } else {
+        this.section = "";
+        this.carnet = "";
+      }
+    },
+    UpdateUserData () {
+      this.UpdateUser({name:this.name,phone:this.phone})
+      this.DesactiveDataUser = true;
+    },
+    submitStudent() {
+      this.UpdateStudentData({ section: this.section, carnet: this.carnet });
+      this.DesactiveDataStudent = true;
+    },
+    FormatName() {
+      return this.loggedUser.name.replace(/\b\w/g, l => l.toUpperCase());
+    }
+  },
   created() {
-    this.name = this.loggedUser.name.replace(/\b\w/g, l => l.toUpperCase());
+    this.name = this.FormatName();
+    this.ChargeStudentData();
+    this.StockMessageVerifyUser();
+  },
+  watch: {
+    dataStudent(val) {
+      if (val) {
+        this.section = val.section;
+        this.carnet = val.carnet;
+        if (val.hasOwnProperty("verify")) {
+          if (val.verify) {
+            this.verify = true;
+          }
+        } else {
+          this.verify = false;
+        }
+      }
+    }
   }
-}
+};
 </script>
 <style scoped>
 #option {
@@ -73,7 +189,7 @@ export default {
   overflow: hidden;
 }
 #option > #title-option {
-  background: #474747;
+  background: #333333;
   font-size: 1.3em;
   font-weight: normal;
   width: 96%;
@@ -82,78 +198,65 @@ export default {
   color: #ffffff;
 }
 #option > section {
-  width: 96%;
-  height: 100%;
-  padding: 2%;
   overflow: auto;
 }
+
 #option > section > h2 {
+  background: linear-gradient(45deg, #8100e2, #690bff);
+  font-weight: normal;
   font-size: 1.2em;
-  color: #474747;
-  padding-bottom: 5px;
+  color: white;
+  padding: 10px 0;
   padding-left: 15px;
-  background-color: #8000e213;
-  border-top: solid #b4b4b4 1px;
-  border-bottom: solid #b4b4b4 1px;
+  margin: 0;
 }
-#data-user {
-  width: 100%;
-  display: grid;
-  grid-gap: 50px;
-  grid-template-columns: auto 1fr;
-}
-#photo-perfil {
-  margin: 5px 25px;
-}
-#photo-perfil img {
-  width: 200px;
-  display: block;
-}
-#photo-perfil input[type="button"] {
-  width: 200px;
+
+.btn-edit {
+  background-color: #8100e2;
+  float: right;
+  width: 50px;
   height: 50px;
-  color: #ffffff;
-  font-size: 1em;
-  font-weight: bold;
-  background-color: #474747;
+  padding: 10px;
   border: none;
+  margin: 10px;
 }
 
-#info-user {
-  margin: 5px 25px;
+#photo-perfil {
+  width: 200px;
+  margin: 0 auto;
+  margin-top: 60px;
 }
+
+#photo-perfil > img {
+  width: 200px;
+}
+
+#data-user,
 #info-student {
-  margin: 5px 25px;
+  display: inline-block;
+  width: 100%;
+  margin-top: 10px;
 }
 
-#verify-user {
-  margin: 5px 25px;
+#data-user {
+  margin-top: 70px;
+}
+
+#verify-user,
+#delete-user {
+  color: #ffffff;
+  padding: 15px;
+
   margin-bottom: 100px;
 }
-
-#verify-user button {
+.submit {
+  background-color: #690bff;
+  border: none;
   width: 100px;
   height: 50px;
   float: right;
   color: #ffffff;
-  font-size: 1em;
-  font-weight: bold;
-  background-color: #474747;
-  border: none;
-}
-
-@media (max-width: 500px) {
-  #data-user {
-    width: 100%;
-    display: block;
-  }
-  #photo-perfil {
-    width: 200px;
-    margin: 5px auto;
-    margin-bottom: 25px;
-  }
-  #info-user {
-    margin: 5px auto;
-  }
+  font-size: 1.2em;
+  margin: 15px;
 }
 </style>

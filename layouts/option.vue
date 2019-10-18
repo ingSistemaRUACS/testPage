@@ -18,7 +18,7 @@ export default {
 </script>
 <style scoped>
 #container-register{
-  background: #fff;
+ background: #474747;
   margin: 5vh auto;
   padding: 0;
   position: relative;
