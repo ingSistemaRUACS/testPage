@@ -1,7 +1,10 @@
 import Vuex from 'vuex'
 
 import Autentication from '~/data/Autentication'
+import Users from '~/data/Users'
+
 const Auth = new Autentication()
+const User = new Users()
 
 const auth = () => {
   return new Vuex.Store({
@@ -9,7 +12,8 @@ const auth = () => {
       user: null,
       pagAccount: '',
       student: null,
-      StockMessage: false
+      StockMessage: false,
+      ListVerify: []
     },
     getters: {
       isAuthenticated (state) {
@@ -26,6 +30,9 @@ const auth = () => {
       },
       geStockMessage (state) {
         return state.StockMessage
+      },
+      getListVerify (state) {
+        return state.ListVerify
       }
     },
     actions: {
@@ -59,7 +66,7 @@ const auth = () => {
       async VerifyUser ({ state, dispatch }) {
         if (state.student) {
           if (!state.student.hasOwnProperty('verify')) {
-            await Auth.VerifyUser(state.user.id)
+            await Auth.VerifyUser(state.user)
             dispatch('StockMessageVerifyUser')
           }
         } else {
@@ -70,6 +77,14 @@ const auth = () => {
       async StockMessageVerifyUser ({ commit, state }) {
         const resp = await Auth.StockMessageVerifyUser(state.user.id)
         commit('UpdateStockMessage', resp)
+      },
+      async ChargeListVerifyUser ({ commit }) {
+        const ListVerify = await User.ListUsersVerify()
+        commit('UpdateListVerify', ListVerify)
+      },
+      verifyUsers ({ dispatch }, users) {
+        User.ValidUsers(users)
+        dispatch('ChargeListVerifyUser')
       }
     },
     mutations: {
@@ -87,6 +102,9 @@ const auth = () => {
       },
       UpdateStockMessage (state, resp) {
         state.StockMessage = resp
+      },
+      UpdateListVerify (state, list) {
+        state.ListVerify = list
       }
     }
   })

@@ -41,8 +41,8 @@ export default class Autentication {
     }
   }
 
-  async VerifyUser (id) {
-    await db.ref(`menssage/validuser/${id}`).set(true)
+  async VerifyUser (user) {
+    await db.ref(`menssage/validuser/${user.id}`).set({ name: user.name, photo: user.photo })
   }
 
   StockMessageVerifyUser (id) {

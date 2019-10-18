@@ -87,7 +87,7 @@
           verificacion de la cuenta, esto servira para validarte como
           estudiantes de la UNI.
         </p>
-        <p v-if="verify && StockMessage">Su cuenta ya fue verificada.</p>
+        <p v-if="verify && !StockMessage">Su cuenta ya fue verificada.</p>
         <p v-if="!verify && StockMessage">Esperando verificacion.</p>
         <button v-if="!verify && !StockMessage" class="submit" @click="VerifyUser()">Solicitar</button>
       </section>
