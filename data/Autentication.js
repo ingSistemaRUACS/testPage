@@ -30,15 +30,6 @@ export default class Autentication {
   isAuthenticated () {
     return !!window.localStorage.getItem('firebase:host:paguniruacs.firebaseio.com')
   }
-  // TODO: revisar luego
-  async DataUser () {
-    const user = await firebase.auth().currentUser
-    return user
-  }
-
-  async Update (data) {
-    await firebase.auth().currentUser.updateProfile({ displayName: data.name, phoneNumber: data.phone })
-  }
 
   async UpdateStudentData (id, student, data) {
     const object = { section: data.section, carnet: data.carnet }

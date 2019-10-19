@@ -3,13 +3,6 @@
     <h1 id="title-option">Opciones de usuario</h1>
     <section>
       <h2>Datos personales</h2>
-      <button
-        v-if="DesactiveDataUser"
-        class="btn-edit"
-        @click="() => (DesactiveDataUser = false)"
-      >
-        <img src="@/assets/option/edit.svg" alt="" srcset="" />
-      </button>
       <div id="photo-perfil">
         <img :src="loggedUser.photo" alt="" />
       </div>
@@ -28,19 +21,12 @@
           :disabled="true"
         />
         <Input
+          v-if="loggedUser.phone"
           type="text"
           title="Telefono"
           :value="loggedUser.phone"
           :disabled="DesactiveDataUser"
         />
-        <button
-          v-if="!DesactiveDataUser"
-          @click="canceltUserData"
-          class="submit"
-        >
-          Cancelar
-        </button>
-        <button v-if="!DesactiveDataUser" class="submit" @click="UpdateUserData">Aceptar</button>
       </section>
       <h2>Datos de estudiantes</h2>
       <button
@@ -108,6 +94,7 @@ import Input from "@/components/option/Input";
 
 export default {
   layout: "option",
+  middleware:'verifyOptions',
   components: { Input },
   data() {
     return {
@@ -129,11 +116,6 @@ export default {
   },
   methods: {
     ...mapActions(["UpdateUser", "UpdateStudentData", "ChargeStudentData",'VerifyUser','StockMessageVerifyUser','UserRemove']),
-    canceltUserData() {
-      this.DesactiveDataUser = true;
-      this.phone = this.loggedUser.phone;
-      this.name = this.FormatName();
-    },
     cancelStudentData() {
       this.DesactiveDataStudent = true;
       if (!this.student) {
@@ -143,10 +125,6 @@ export default {
         this.section = "";
         this.carnet = "";
       }
-    },
-    UpdateUserData () {
-      this.UpdateUser({name:this.name,phone:this.phone})
-      this.DesactiveDataUser = true;
     },
     submitStudent() {
       this.UpdateStudentData({ section: this.section, carnet: this.carnet });
