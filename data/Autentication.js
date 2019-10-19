@@ -4,12 +4,20 @@ import { db } from '~/plugins/firebase'
 export default class Autentication {
   constructor () {
     this.provider = new firebase.auth.GoogleAuthProvider()
+    this.providerFace = new firebase.auth.FacebookAuthProvider()
+    this.providerTwitt = new firebase.auth.TwitterAuthProvider()
   }
 
   async login (type) {
     let resultAuth = null
     if (type === 'Google') {
       resultAuth = await firebase.auth().signInWithPopup(this.provider)
+      return resultAuth.user
+    } else if (type === 'Facebook') {
+      resultAuth = await firebase.auth().signInWithPopup(this.providerFace)
+      return resultAuth.user
+    } else if (type === 'Twitter') {
+      resultAuth = await firebase.auth().signInWithPopup(this.providerTwitt)
       return resultAuth.user
     }
     return null
