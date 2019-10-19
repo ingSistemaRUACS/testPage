@@ -35,7 +35,7 @@ export default {
     ...mapMutations({
       ChangaPagAccount: "ChangaPagAccount"
     }),
-    ...mapActions(["ChargeListVerifyUser",'verifyUsers']),
+    ...mapActions(["ChargeListVerifyUser",'verifyUsers','RemoveVerifyUser']),
     ListId(){
       let data = [];
       this.getListVerify.forEach(element => {
@@ -59,6 +59,7 @@ export default {
   created() {
     this.ChangaPagAccount("Usuarios");
     this.ChargeListVerifyUser();
+    this.RemoveVerifyUser();
   }
 };
 </script>

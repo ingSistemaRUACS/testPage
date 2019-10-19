@@ -43,6 +43,10 @@ const auth = () => {
           this.$router.push('/')
         }
       },
+      async Autologin ({ commit, dispatch }, user) {
+        commit('editUser', user)
+        dispatch('ChargeStudentData')
+      },
       async Logout ({ commit }) {
         await Auth.Logout()
         commit('resetUser')
@@ -78,13 +82,20 @@ const auth = () => {
         const resp = await Auth.StockMessageVerifyUser(state.user.id)
         commit('UpdateStockMessage', resp)
       },
-      async ChargeListVerifyUser ({ commit }) {
-        const ListVerify = await User.ListUsersVerify()
-        commit('UpdateListVerify', ListVerify)
+      async ChargeListVerifyUser ({ commit, state }) {
+        const userVerify = await User.UsersVerify()
+
+        if (User.userKey(state.ListVerify, userVerify.id) < 0) {
+          commit('UpdateListVerify', userVerify)
+        }
+      },
+      async RemoveVerifyUser ({ commit, state }) {
+        const key = await User.UserRemoveMessage()
+        const i = User.userKey(state.ListVerify, key)
+        commit('RemoveListVerify', i)
       },
       verifyUsers ({ dispatch }, users) {
         User.ValidUsers(users)
-        dispatch('ChargeListVerifyUser')
       }
     },
     mutations: {
@@ -103,8 +114,11 @@ const auth = () => {
       UpdateStockMessage (state, resp) {
         state.StockMessage = resp
       },
-      UpdateListVerify (state, list) {
-        state.ListVerify = list
+      UpdateListVerify (state, user) {
+        state.ListVerify.push(user)
+      },
+      RemoveListVerify (state, i) {
+        state.ListVerify.splice(i, 1)
       }
     }
   })

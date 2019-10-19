@@ -2,30 +2,27 @@
 import { db } from '~/plugins/firebase'
 
 export default class Users {
-  ListUsersVerify () {
+  UsersVerify () {
     return new Promise((resolve, reject) => {
-      db.ref('menssage/validuser').on('value', (e) => {
-        const List = e.val()
-        if (List) {
-          const max = Object.keys(List).length
-          const ListUser = []
-          let count = 0
-          for (const id in List) {
-            db.ref(`profile/student/${id}`).on('value', (e) => {
-              const user = e.val()
-              user.id = id
-              user.name = List[id].name
-              user.photo = List[id].photo
-              ListUser.push(user)
-              count++
-
-              if (count >= max) {
-                resolve(ListUser)
-              }
-            })
-          }
+      db.ref('menssage/validuser').on('child_added', (data) => {
+        if (data) {
+          db.ref(`profile/student/${data.key}`).on('value', (e) => {
+            const user = e.val()
+            const info = data.val()
+            user.id = data.key
+            user.name = info.name
+            user.photo = info.photo
+            resolve(user)
+          })
         }
-        resolve(null)
+      })
+    })
+  }
+
+  UserRemoveMessage () {
+    return new Promise((resolve, reject) => {
+      db.ref('menssage/validuser').on('child_removed', (data) => {
+        resolve(data.key)
       })
     })
   }
@@ -37,5 +34,14 @@ export default class Users {
       db.ref(`profile/student/${user.id}`).update(data)
       db.ref(`menssage/validuser/${user.id}`).remove()
     })
+  }
+
+  userKey (list, key) {
+    for (let i = 0; i < list.length; i++) {
+      if (list[i].id === key) {
+        return i
+      }
+    }
+    return -1
   }
 }
