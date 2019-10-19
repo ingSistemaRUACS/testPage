@@ -1,7 +1,7 @@
 <template>
   <section id="MenuUser">
     <div id="box-menu">
-      <nuxt-link :class="{'ItemActiveMenu':pagAccount === item.title}" class="ItemMenuUser" v-for="(item, index) in listMenu" :key="index" :to="item.link">{{
+      <nuxt-link v-if="pagAccount !== 'none'" :class="{'ItemActiveMenu':pagAccount === item.title}" class="ItemMenuUser" v-for="(item, index) in listMenu" :key="index" :to="item.link">{{
       item.title
     }}</nuxt-link>
     <div id="box-opcion" @click="clickOpcion" v-click-outside="hide">

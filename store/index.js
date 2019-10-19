@@ -19,6 +19,14 @@ const auth = () => {
       isAuthenticated (state) {
         return !!state.user
       },
+      isAdmin (state) {
+        if (state.student) {
+          if (state.student.hasOwnProperty('admin')) {
+            return state.student.admin
+          }
+        }
+        return false
+      },
       loggedUser (state) {
         return state.user
       },
@@ -44,8 +52,9 @@ const auth = () => {
         }
       },
       async Autologin ({ commit, dispatch }, user) {
+        const data = await Auth.DataStudent(user.uid)
         commit('editUser', user)
-        dispatch('ChargeStudentData')
+        commit('UpdateStudentData', data)
       },
       async Logout ({ commit }) {
         await Auth.Logout()
@@ -56,9 +65,6 @@ const auth = () => {
         await Auth.Delete()
         commit('resetUser')
         this.$router.push('/')
-      },
-      async UpdateUser ({}, data) {
-        await Auth.Update(data)
       },
       async UpdateStudentData ({ state }, data) {
         await Auth.UpdateStudentData(state.user.id, !!state.student, data)

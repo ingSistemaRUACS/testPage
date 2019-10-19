@@ -8,14 +8,14 @@ import { mapMutations } from 'vuex'
 
 export default {
     layout: 'account',
-    middleware:'verifyAuthenticatedAdmin',
+    middleware:'verifyAuthenticated',
     methods:{
         ...mapMutations({
             ChangaPagAccount:'ChangaPagAccount'
         })
     },
     created(){
-        this.ChangaPagAccount('Publicaciones')
+        this.ChangaPagAccount('none')
     }
 }
 </script>

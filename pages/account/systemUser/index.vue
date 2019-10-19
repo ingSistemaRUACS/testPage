@@ -23,7 +23,7 @@ import UserVerify from "@/components/users/userValid";
 
 export default {
   layout: "account",
-  middleware: "verifyAuthenticated",
+  middleware: "verifyAuthenticatedAdmin",
   components: { UserVerify },
   computed: {
     ...mapGetters(["getListVerify"])
