@@ -6,7 +6,7 @@ export default class Users {
     return new Promise((resolve, reject) => {
       db.ref('menssage/validuser').on('child_added', (data) => {
         if (data) {
-          db.ref(`profile/student/${data.key}`).on('value', (e) => {
+          db.ref(`users/${data.key}`).on('value', (e) => {
             const user = e.val()
             const info = data.val()
             user.id = data.key
@@ -31,7 +31,7 @@ export default class Users {
     listuser.forEach((user) => {
       const data = { carnet: user.carnet, section: user.section }
       data.verify = true
-      db.ref(`profile/student/${user.id}`).update(data)
+      db.ref(`users/${user.id}`).update(data)
       db.ref(`menssage/validuser/${user.id}`).remove()
     })
   }

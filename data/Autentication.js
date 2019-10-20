@@ -34,9 +34,9 @@ export default class Autentication {
   async UpdateStudentData (id, student, data) {
     const object = { section: data.section, carnet: data.carnet }
     if (student) {
-      await db.ref(`profile/student/${id}`).update(object)
+      await db.ref(`users/${id}`).update(object)
     } else {
-      await db.ref(`profile/student/${id}`).set(object)
+      await db.ref(`users/${id}`).set(object)
     }
   }
 
@@ -57,13 +57,13 @@ export default class Autentication {
 
   DataStudent (id) {
     return new Promise((resolve, reject) => {
-      db.ref(`profile/student/${id}`).on('value', e => resolve(e.val()))
+      db.ref(`users/${id}`).on('value', e => resolve(e.val()))
     })
   }
 
   async Delete () {
     const user = await firebase.auth().currentUser
-    await db.ref(`profile/student/${user.uid}`).remove()
+    await db.ref(`users/${user.uid}`).remove()
     await db.ref(`menssage/validuser/${user.uid}`).remove()
     await firebase.auth().signOut()
   }

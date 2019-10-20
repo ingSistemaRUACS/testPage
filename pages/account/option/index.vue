@@ -40,14 +40,14 @@
         <Input
           type="text"
           title="Carnet"
-          message="Por favor no utlizar separadores como - "
+          message="Utiliza - y mayuscula"
           v-model="carnet"
           :disabled="DesactiveDataStudent || verify"
         />
         <Input
           type="text"
           title="Seccion"
-          message="Por favor no utlizar separadores como - "
+          message="Utiliza - y mayusculas"
           v-model="section"
           :disabled="DesactiveDataStudent"
         />
@@ -75,7 +75,7 @@
         </p>
         <p v-if="verify && !StockMessage">Su cuenta ya fue verificada.</p>
         <p v-if="!verify && StockMessage">Esperando verificacion.</p>
-        <button v-if="!verify && !StockMessage" class="submit" @click="VerifyUser()">Solicitar</button>
+        <button v-if="!verify && !StockMessage" class="submit" @click="VerifyUser()" :disabled="DesactiveVerify">Solicitar</button>
       </section>
       <h2>Eliminar cuenta</h2>
       <section id="delete-user">
@@ -104,7 +104,8 @@ export default {
       section: "",
       carnet: "",
       DesactiveDataUser: true,
-      DesactiveDataStudent: true
+      DesactiveDataStudent: true,
+      DesactiveVerify:true,
     };
   },
   computed: {
@@ -128,6 +129,7 @@ export default {
     },
     submitStudent() {
       this.UpdateStudentData({ section: this.section, carnet: this.carnet });
+      this.ChargeStudentData();
       this.DesactiveDataStudent = true;
     },
     FormatName() {
@@ -136,14 +138,19 @@ export default {
   },
   created() {
     this.name = this.FormatName();
-    this.ChargeStudentData();
     this.StockMessageVerifyUser();
+    this.ChargeStudentData();
   },
   watch: {
     dataStudent(val) {
       if (val) {
         this.section = val.section;
         this.carnet = val.carnet;
+        if (this.section != '' && this.carnet != '') {
+          this.DesactiveVerify = false;
+        } else {
+          this.DesactiveVerify = true;
+        }
         if (val.hasOwnProperty("verify")) {
           if (val.verify) {
             this.verify = true;
@@ -236,5 +243,8 @@ export default {
   color: #ffffff;
   font-size: 1.2em;
   margin: 15px;
+}
+.submit[disabled] {
+  background-color: #757575;
 }
 </style>
