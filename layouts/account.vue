@@ -1,7 +1,6 @@
 <template>
   <div id="container">
     <header>
-      <Bar />
       <Presentation />
       <Menu />
       <MenuUser />
@@ -12,14 +11,12 @@
 
 <script>
 
-import Bar from "@/components/header/Bar";
 import Menu from "@/components/menu/Menu";
 import Presentation from "@/components/header/PresentInfoUser";
 import MenuUser from "@/components/menu/MenuUser";
 
 export default {
   components: {
-    Bar,
     Menu,
     MenuUser,
     Presentation

@@ -43,6 +43,7 @@ export default {
 }
 
 .button-login {
+  background-color: #ffffff;
   width: 250px;
   height: 50px;
   display: flex;
@@ -59,49 +60,19 @@ export default {
 
 .button-login > h1 {
   font-size: 1em;
-  color: #ffff;
   margin-left: 20px;
 }
 
 #button-Google {
-  background-color: #db4a39;
+  color: #db4a39;
 }
 
 #button-Facebook {
-  background-color: #3b5998;
+  color: #3b5998;
 }
 
 #button-Twitter {
-  background-color: #00acee;
-}
-
-#login-class {
-  width: 250px;
-  margin: 30px auto;
-}
-
-#login-class > input {
-  width: 240px;
-  font-size: 1em;
-  border: none;
-  margin: 3px auto;
-  padding: 10px 5px;
-}
-
-#login-class > input[type=submit] {
-  width: 250px;
-  margin-top: 10px;
-  background-color: #007BFF;
-  color: white;
-  padding: 15px 5px;
-}
-
-#register {
-  display: inline-block;
-  text-align: center;
-  width: 250px;
-  margin: 5px auto;
-  color: #2be055;
+  color: #00acee;
 }
 
 </style>

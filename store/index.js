@@ -13,7 +13,8 @@ const auth = () => {
       pagAccount: '',
       student: null,
       StockMessage: false,
-      ListVerify: []
+      ListVerify: [],
+      present: {}
     },
     getters: {
       isAuthenticated (state) {
@@ -41,6 +42,9 @@ const auth = () => {
       },
       getListVerify (state) {
         return state.ListVerify
+      },
+      getPresent (state) {
+        return state.present
       }
     },
     actions: {
@@ -125,6 +129,9 @@ const auth = () => {
       },
       RemoveListVerify (state, i) {
         state.ListVerify.splice(i, 1)
+      },
+      ChangePresent (state, present) {
+        state.present = present
       }
     }
   })
