@@ -11,11 +11,21 @@
   </article>
 </template>
 <script>
+import { mapMutations } from 'vuex'
 import Teacher from '@/components/teachers/Teacher'
 
 export default {
   components: {
     Teacher
+  },
+   methods:{
+    ...mapMutations(['ChangePresent'])
+  },
+  beforeMount(){
+    this.ChangePresent({
+      title:'Docentes',
+      info:'A continuaciรณn, podrรก observar los docentes que imparte en el recinto universitario.',
+      img:'presentTecher.svg'})
   }
 }
 </script>

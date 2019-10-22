@@ -1,22 +1,18 @@
 <template>
-  <section id="presentation">
+<section id="presentation">
       <div id="top-bar">
        <nuxt-link id="link-bar" to="/">
     <img src="@/assets/UNI.svg" alt="UNI" id="icon-uni"></img>
     <h2>RUACS | Ingenieria de Sistemas</h2>
     </nuxt-link>
-    </div>
-   <img src="@/assets/PresentationTemp.svg" id="Background-image" />
+  </div>
     <div id="info">
-      <h1>Titulo de la pagina</h1>
+      <h1>{{getPresent.title}}</h1>
       <p>
-        is simply dummy text of the printing and typesetting industry. Lorem
-        Ipsum has been the industry's standard dummy text ever since the 1500s,
-        when an unknown printer took a galley of type and scrambled it to make a
-        type specimen book. It has survived not only five centuries, but also
-        the leap into electronic typesetting, remaining essentially unchanged.
+        {{getPresent.info}}
       </p>
     </div>
+    <img v-if="getPresent.img" :src="require(`@/assets/present/${getPresent.img}`)" id="Background-image" />
   </section>
 </template>
 <script>
@@ -89,22 +85,22 @@ export default {
 }
 
 #presentation > #info > h1 {
-  width: 400px;
+  max-width: 400px;
   font-size: 2em;
   margin: 0 auto;
   margin-bottom: 20px;
 }
 
 #presentation > #info > p {
-  width: 400px;
+  max-width: 400px;
   margin: 0 auto;
   font-size: 1em;
 }
 
-@media screen and (min-width: 0px) and (max-width: 480px) {
+@media screen and (min-width: 0px) and (max-width: 900px) {
   #presentation {
     position: relative;
-    height: 100vh;
+    height: auto;
     grid-template-columns: 100%;
     grid-template-rows: auto auto 1fr;
   }
@@ -112,7 +108,8 @@ export default {
   #presentation > #Background-image {
     grid-column: 1;
     grid-row: 3;
-    width: 100%;
+    width: 95%;
+    margin:2.5%;
   }
 
   #presentation > #info {

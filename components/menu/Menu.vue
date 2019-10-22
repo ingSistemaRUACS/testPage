@@ -1,11 +1,15 @@
 <template>
   <div v-if="open" id="menu-cont">
-    <div id="menu-icon">
-       <nuxt-link class="icon-menu" to="/">
+    <div id="cont-menu">
+       <nuxt-link id="icon-uni" to="/">
         <img src="@/assets/UNI.svg" alt="home">
       </nuxt-link>
-    </div>
-    <div id="cont-menu">
+       <nuxt-link id="icon-user" to="/login">
+        <img v-if="loggedUser" :src="loggedUser.photo" alt="user">
+        <img v-else src="@/assets/defaulUser-100.jpg" alt="user">
+        <h3 v-if="loggedUser" >{{loggedUser.name}}</h3>
+        <h3 v-else >Iniciar sección</h3>
+      </nuxt-link>
       <div id="menu">
       <nuxt-link class="icon-menu" to="/">
         <img src="@/assets/icon-menu/home.svg" alt="home">
@@ -13,7 +17,7 @@
       </nuxt-link>
       <nuxt-link class="icon-menu" to="/info">
         <img src="@/assets/icon-menu/info.svg" alt="info">
-        <h3>Informaci??n</h3>
+        <h3>Informacion</h3>
       </nuxt-link>
       <nuxt-link class="icon-menu" to="/teachers">
         <img src="@/assets/icon-menu/chalkboard-teacher.svg" alt="teacher">
@@ -24,14 +28,6 @@
         <h3>Pensum</h3>
       </nuxt-link>
       </div>
-    </div>
-    <div id="menu-user">
- <nuxt-link id="icon-user" to="/login">
-        <img v-if="loggedUser" :src="loggedUser.photo" alt="user">
-        <img v-else src="@/assets/defaulUser-100.jpg" alt="user">
-        <h3 v-if="loggedUser" >{{loggedUser.name}}</h3>
-        <h3 v-else >Iniciar secci?n</h3>
-      </nuxt-link>
     </div>
   </div>
 </template>
@@ -62,74 +58,77 @@ export default {
   position:fixed;
   top:0;
   left: 0;
-  width: 50px;
+  width: 40px;
   height: 100vh;
   background-color: #272727;
   color: #d8d8d8;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
   z-index: 1000;
 }
 
-#fond-menu{
-  display: none;
-}
-
-#menu-icon > a> img {
-  width: 30px;
-  margin: 10px;
-}
-
-#cont-menu {
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-#menu > a {
-  display: flex;
-  padding: 5px;
-  height: 50px;
-  align-items: center;
-}
-#menu-user > a {
-  display: flex;
-  height: 50px;
-  align-items: center;
-}
-
-#menu > a> img {
-  display: inline-block;
-  width: 30px;
-}
-
-#menu-user > a> img {
+#icon-uni {
   display:inline-block;
-  width: 50px;
 }
 
-#menu > a> h3 {
-  display: none;
-  background-color: #272727;
-  padding: 5px 10px;
-  width: 150px;
+#icon-uni > img {
+  display:inline-block;
+  width: 30px;
   margin: 5px;
 }
 
-#menu > a:hover > h3 {
-  display:inline-block;
-}
-
-#menu-user > a > h3 {
-  display: none;
+#icon-user {
+  display:flex;
   align-items: center;
-  background-color: #272727;
-  width: 150px;
-  height: 50px;
-  padding: 0 10px;
 }
 
-#menu-user > a:hover > h3 {
+#icon-user > img {
+  display:inline-block;
+  width: 40px;
+}
+
+.icon-menu {
+  display:flex;
+  align-items: center;
+  height: 40px;
+  margin: 4px 0;
+}
+
+.icon-menu > img {
+  display:inline-block;
+  width: 20px;
+  margin: 10px;
+}
+
+#icon-user > h3 {
+  display:none;
+  padding: 0 10px;
+  height: 40px;
+  background-color: #272727;
+  font-size: 1em;
+  font-weight: normal;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0;
+}
+
+.icon-menu > h3 {
+  display:none;
+  padding: 0 10px;
+  height: 40px;
+  background-color: #272727;
+  font-size: 1em;
+  font-weight: normal;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.icon-menu:hover > h3 {
   display:flex;
 }
+
+#icon-user:hover > h3 {
+  display:flex;
+}
+
 </style>

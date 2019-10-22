@@ -39,7 +39,7 @@ export default {
 #pag {
   width: 100%;
   display: grid;
-  grid-template-columns: 50px 1fr;
+  grid-template-columns: 30px 1fr;
 }
 
 #info-pag {
@@ -51,7 +51,7 @@ header {
   width: 100%;
   min-height: 100px;
   display: grid;
-  grid-template-columns: 50px 1fr;
+  grid-template-columns: 30px 1fr;
 }
 
 html {
@@ -66,6 +66,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: rgb(235, 235, 235);
+  overflow-x: hidden;
 }
 
 a {

@@ -3,7 +3,7 @@
     <header>
       <Menu />
     </header>
-    <nuxt />
+      <nuxt />
   </div>
 </template>
 
@@ -18,13 +18,19 @@ export default {
 </script>
 <style scoped>
 #container-register{
-  background: #474747;
+  background: linear-gradient(45deg, #8100e2, #690bff);
   margin: 0 auto;
   margin-top: 60px;
   padding: 20px 0;
   position: relative;
   max-width: 350px;
   box-shadow: 0px 0px 5px 2px rgb(147, 147, 147);
+}
+
+#pag {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 30px 1fr;
 }
 
 header{
@@ -58,6 +64,8 @@ a:visited{
     max-width: 100%;
     height: 100vh;
     margin: 0;
+    padding-top: 20px;
+    margin-left: 40px;
   }
 }
 </style>
