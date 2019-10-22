@@ -18,7 +18,8 @@ export default {
     this.ChangePresent({
       title:'¿Qué es la Ingeniería de Sistema?',
       info:'Es la ingeniería que se encarga del diseño, la programación, la implantación y el mantenimiento de sistemas. A diferencia de otras especialidades, esta disciplina no se ocupa de productos tangibles sino de productos lógicos.',
-      img:'presentHome.svg'}),
+      img:'presentHome.svg'})
+  },
   asyncData () {
     const ref = firestore.collection('posts')
     return ref.get().then(result => {
