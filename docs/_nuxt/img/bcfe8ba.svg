@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="61" height="62" viewBox="0 0 61 62">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-1 {
+        stroke: #707070;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_33" data-name="Rectangle 33" class="cls-1" width="61" height="62" transform="translate(500)"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_13" data-name="Mask Group 13" class="cls-2" transform="translate(-500)">
+    <g id="logo_uni" data-name="logo uni" transform="translate(500 11.631)">
+      <path id="Path_7" data-name="Path 7" class="cls-3" d="M37.152,34.387H22.334V7.09h-10.5V45.828H47.654V21.007h-10.5Z" transform="translate(-11.832 -7.09)"/>
+      <path id="Path_8" data-name="Path 8" class="cls-3" d="M66.231,34.387H63.99V7.09H28.168V32.448h10.5V18.528H53.487v27.3H76.733V21.007h-10.5Z" transform="translate(-15.508 -7.09)"/>
+      <rect id="Rectangle_32" data-name="Rectangle 32" class="cls-3" width="10.502" height="11.437" transform="translate(50.723)"/>
+    </g>
+  </g>
+</svg>
