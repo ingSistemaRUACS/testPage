@@ -7,13 +7,16 @@
       <span class="pub-detail" id="pub-author">Por: {{ publicacion.autor }}</span> |
       <span class="pub-detail" id="pub-date">{{ publicacion.fecha }}</span>
     </section>
-    <div id="pub-content" v-html="textDom.contenido"></div>
+    <div id="pub-content" v-html="htmlContent"></div>
   </main>
 </template>
 
 <script>
 import Publicacion from '@/data/publicacion/publicacion'
 import showdown from 'showdown'
+import { storage, firestore } from '@/plugins/firebase'
+
+let findImgURL = (imgURL) => '#'
 
 const conv = new showdown.Converter({
   headerLevelStart: 2,
@@ -22,13 +25,31 @@ const conv = new showdown.Converter({
     {
       type: 'lang',
       regex: /\^\^youtube (\S+)/g,
-      replace: '<iframe width="560" height="315" src="https://www.youtube.com/embed/$1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+      replace: '<iframe width="560" height="315"'+
+      ' src="https://www.youtube.com/embed/$1" frameborder="0"' +
+      ' allow="accelerometer; autoplay; encrypted-media;' +
+      'gyroscope; picture-in-picture" allowfullscreen></iframe>'
+    },
+    {
+      type: 'lang',
+      regex: /\^\^imagen (\S+)/g,
+      replace (txt, gro) {
+        const res = findImgURL(gro)
+        if (!res){
+          gro = 'Imagen no encontrada'
+        }
+
+        return `<img src="${res}" alt="${gro}"></img>`
+      }
     }
   ]
 })
 
 export default {
   layout: 'publication',
+  created () {
+    findImgURL = this.findImg
+  },
   data () {
     return {
       publicacion: new Publicacion(
@@ -36,24 +57,51 @@ export default {
         'Nadie',
         'El contenido de la publicacion',
         '12-12-1967'
-      ),
-      textDom: {
-        contenido: 'El contenido de la publicacion'
-      }
+      )
     }
   },
-  asyncData ({ $axios }) {
-    const url = 'http://localhost:8000/'
-    const result = {
-      contenido: 'Vacio'
+  async asyncData ({ route }) {
+    const postId = route.params.id
+    const postRef = firestore.collection('posts').doc(postId)
+
+    const postContent = (await postRef.get()).data()
+
+    let urls = []
+    if (postContent.imagenes.length > 0){
+      urls = await Promise.all(postContent.imagenes.map(x => {
+        const strRef = storage.ref(x.path)
+        return strRef && strRef.getDownloadURL()
+      }))
     }
 
-    $axios.$get(url + 'publicacion1.md')
-      .then((res) => {
-        result.contenido = conv.makeHtml(res)
-      })
+    for(let i = 0; i < urls.length; i++){
+      const imgName = postContent.imagenes[i].name
+      const url = urls[i]
+
+      postContent.imagenes[i].url = urls[i]
+    }
+
+    const newPub = new Publicacion(
+      postContent.titulo,
+      postContent.autor,
+      postContent.codigo,
+      '1992-01-01',
+      postContent.imagenes
+    )
+
     return {
-      textDom: result // result || 'Sin Contenido'
+      publicacion: newPub
+    }
+  },
+  computed: {
+    htmlContent() {
+      return conv.makeHtml(this.publicacion.contenido)
+    }
+  },
+  methods: {
+    findImg(imgName) {
+      const foundImg = this.publicacion.imagenes.find(x=>x.name==imgName)
+      return foundImg && foundImg.url
     }
   }
 }
@@ -72,29 +120,6 @@ export default {
 
 main{
   padding: 0 70px;
-}
-
-h2{
-  margin-top: 40px;
-}
-
-#pub-content{
-  color:#3f3f3f;
-  min-height: 500px;
-}
-
-#pub-content img{
-  margin: 30px auto;
-  display: block;
-  max-width: 95%;
-  max-height: 60vh;
-}
-
-#pub-content iframe{
-  margin: 30px auto;
-  display: block;
-  max-width: 95%;
-  max-height: 60vh;
 }
 
 @media(max-width: 700px) {

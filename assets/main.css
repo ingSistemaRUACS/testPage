@@ -9,7 +9,30 @@ blockquote{
   margin: 0;
 }
 
-.quote, blockquote>p{
+#pub-content h2, #pub-content h3, #pub-content h4, #pub-content h5{
+  margin-top: 40px;
+}
+
+#pub-content{
+  color:#3f3f3f;
+  min-height: 500px;
+}
+
+#pub-content img{
+  margin: 30px auto;
+  display: block;
+  max-width: 95%;
+  max-height: 60vh;
+}
+
+#pub-content iframe{
+  margin: 30px auto;
+  display: block;
+  max-width: 95%;
+  max-height: 60vh;
+}
+
+#pub-content .quote, #pub-content blockquote>p{
   margin: 0;
   margin: 30px 0;
   margin-left: 30px;

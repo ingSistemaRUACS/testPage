@@ -8,20 +8,21 @@
       <a href="#"><span id="com-count"><span id="com-num">2</span> Comentarios</span></a>
     </div>
 
-    <nuxt-link to="/publications/1"><strong class="titl">Un Titulo Comun</strong></nuxt-link>
+    <nuxt-link :to="`/publications/${postId}`"><strong class="titl">{{ title }}</strong></nuxt-link>
 
     <div id="description">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Repellendus autem doloremque libero non voluptas amet esse saepe,
-      temporibus, in fugit ipsum voluptatibus soluta, aliquam debitis
-      laborum sunt voluptatum voluptate ea.
+      {{ description }}
     </div>
   </div>
 </template>
 
 <script>
 export default {
-
+  props: [
+    'title',
+    'description',
+    'postId'
+  ]
 }
 </script>
 

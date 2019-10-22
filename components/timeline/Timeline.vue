@@ -1,19 +1,26 @@
 <template>
   <section id="timeline">
-    <Card class="tm-card" />
-    <Card class="tm-card" />
-    <Card class="tm-card" />
-    <Card class="tm-card" />
-    <Card class="tm-card" />
-    <Card class="tm-card" />
-    <Card class="tm-card" />
-    <Card class="tm-card" />
+    <Card
+      v-for="post in publicaciones"
+      v-bind:key="post.id"
+      :title="post.titulo"
+      :description="post.descripcion"
+      :postId="post.id"
+      class="tm-card" />
   </section>
 </template>
 
 <script>
 import Card from './Card'
 export default {
+  data() {
+    return {
+
+    }
+  },
+  props: [
+    'publicaciones'
+  ],
   components: {
     Card
   }

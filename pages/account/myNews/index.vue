@@ -1,6 +1,6 @@
 <template>
     <article>
-
+        <nuxt-link to="/publications/new">Nueva Publicacion</nuxt-link>
     </article>
 </template>
 <script>
