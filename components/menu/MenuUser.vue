@@ -1,7 +1,7 @@
 <template>
   <section id="MenuUser">
     <div id="box-menu">
-      <nuxt-link :class="{'ItemActiveMenu':pagAccount === item.title}" class="ItemMenuUser" v-for="(item, index) in listMenu" :key="index" :to="item.link">{{
+      <nuxt-link v-if="pagAccount !== 'none'" :class="{'ItemActiveMenu':pagAccount === item.title}" class="ItemMenuUser" v-for="(item, index) in listMenu" :key="index" :to="item.link">{{
       item.title
     }}</nuxt-link>
     <div id="box-opcion" @click="clickOpcion" v-click-outside="hide">
@@ -22,10 +22,8 @@ export default {
   data() {
     return {
       listMenu: [
-        { title: "Eventos", link: "/account/myEvent" },
         { title: "Publicaciones", link: "/account/myNews" },
-        { title: "Usuarios", link: "/account/systemUser" },
-        { title: "Docentes", link: "/account/sistemTeacher" }
+        { title: "Usuarios", link: "/account/systemUser" }
       ],
       viewOpcion: false
     };
@@ -69,7 +67,7 @@ export default {
   width: 800px;
   max-width: 800px;
   display: grid;
-  grid-template-columns: repeat(4,23%) 8% 
+  grid-template-columns: repeat(3,1fr) auto;
 }
 #MenuUser > #box-menu >.ItemMenuUser{
   display: flex;
@@ -80,6 +78,7 @@ export default {
 
 #box-opcion
 {
+  grid-column: 4;
   height: 50px;
 }
 
@@ -90,7 +89,7 @@ export default {
   background-color: #fff;
   list-style: none;
   padding: 0;
-  bottom: -75px;
+  margin-top: 0px;
   box-shadow: 0px 0px 5px 2px rgb(147, 147, 147);
 }
 #box-opcion > ul > li
@@ -103,5 +102,18 @@ export default {
 #icon-cog {
   width: 40px;
   margin: 5px 12px;
+}
+
+@media(max-width: 800px) {
+  #box-menu {
+  width: 100%;
+  grid-template-columns: repeat(3,1fr) auto;
+}
+}
+@media(max-width: 500px) {
+  #box-menu {
+  width: 100%;
+  grid-template-columns: repeat(2,1fr) auto;
+}
 }
 </style>

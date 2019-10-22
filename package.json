@@ -18,7 +18,8 @@
     "showdown": "^1.9.0",
     "vue-click-outside": "^1.0.7",
     "vue-img-inputer": "^2.1.6",
-    "vue-showdown": "^2.4.1"
+    "vue-showdown": "^2.4.1",
+    "vuexfire": "^3.2.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",

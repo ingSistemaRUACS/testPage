@@ -15,7 +15,7 @@ export default {
         })
     },
     created(){
-        this.ChangaPagAccount('Docentes')
+        this.ChangaPagAccount('none')
     }
 }
 </script>

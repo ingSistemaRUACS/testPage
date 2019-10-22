@@ -8,7 +8,7 @@ import { mapMutations } from 'vuex'
 
 export default {
     layout: 'account',
-    middleware:'verifyAuthenticated',
+    middleware:'verifyAuthenticatedAdmin',
     methods:{
         ...mapMutations({
             ChangaPagAccount:'ChangaPagAccount'

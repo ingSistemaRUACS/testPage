@@ -6,7 +6,7 @@
       <div id="info-user">
         <h1>{{ loggedUser.name.replace(/\b\w/g, l => l.toUpperCase()) }}</h1>
         <h2>{{ loggedUser.email }}</h2>
-        <h2>{{ loggedUser.phone }}</h2>
+        <h3 v-if="getDataStudent">{{ getDataStudent.carnet }}</h3>
       </div>
     </div>
   </section>
@@ -15,9 +15,7 @@
 import { mapActions, mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapGetters({
-      loggedUser: "loggedUser"
-    })
+    ...mapGetters(['loggedUser','getDataStudent'])
   }
 };
 </script>
@@ -75,6 +73,12 @@ export default {
 }
 #form-info > #info-user > h2 {
   font-size: 1em;
+  font-weight: normal;
+}
+#form-info > #info-user > h3 {
+  font-size: 0.9em;
+  margin-top: -10px;
+  color: #bbbbbb;
   font-weight: normal;
 }
 @media screen and (min-width: 0px) and (max-width: 480px) {
