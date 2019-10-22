@@ -1,24 +1,23 @@
 <template>
   <div id="container">
     <header>
-      <Bar />
-      <Presentation />
       <Menu />
+      <Presentation />
     </header>
-    <nuxt />
+    <div id="pag">
+        <nuxt id="info-pag"/>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
 
-import Bar from "@/components/header/Bar";
 import Menu from "@/components/menu/Menu";
 import Presentation from "@/components/header/Presentation";
 
 export default {
   components: {
-    Bar,
     Presentation,
     Menu
   },
@@ -29,17 +28,30 @@ export default {
 </script>
 <style>
 #container {
-  background: #fff;
-  margin: 0 auto;
-  padding: 20px 0;
-  padding-bottom: 0;
+  width: 100%;
+  height: 100vh;
   position: relative;
-  max-width: 800px;
-  box-shadow: 0px 0px 5px 2px rgb(147, 147, 147);
+  background: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+#pag {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+}
+
+#info-pag {
+  width: 100%;
+  grid-column: 2;
 }
 
 header {
+  width: 100%;
   min-height: 100px;
+  display: grid;
+  grid-template-columns: 50px 1fr;
 }
 
 html {
@@ -52,6 +64,7 @@ html {
 
 body {
   margin: 0;
+  padding: 0;
   background-color: rgb(235, 235, 235);
 }
 
