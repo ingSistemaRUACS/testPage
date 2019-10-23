@@ -10,6 +10,14 @@
         <label for="postDesc">Descripcion Corta:</label>
         <input v-model="postDesc" type="text" name="postDesc" id="postDescInput">
       </div>
+      <div>
+        <label for="isEventCh">Es un evento?</label>
+        <input v-model="isEvent" type="checkbox" name="isEventCh" id="isEventInput">
+      </div>
+      <div v-if="isEvent">
+        <label for="eventDetails">Fecha del evento</label>
+        <input v-model="eventDate" type="date" name="eventDetails">
+      </div>
       <label for="contentInput">Contenido</label>
       <textarea
       name="contentInput"
@@ -97,11 +105,10 @@ export default {
         // {name: '', selected: false}
       ],
       postTitle: '',
-      postDesc: ''
+      postDesc: '',
+      isEvent: false,
+      eventDate: undefined
     }
-  },
-  computed: {
-    
   },
   methods: {
     imgAdded (info, comp) {
@@ -155,12 +162,21 @@ export default {
 
       data.imagenes = imgPaths.map(x=>({ name: x.metadata.name, path: x.metadata.fullPath }))
 
+      data.fechaPublicacion = (new Date(Date.now())).toDateString()
+
+      data.esEvento = false
+      if (this.isEvent){
+        data.esEvento = true
+        data.fechaEvento = this.eventDate || (new Date(Date.now())).toDateString()
+      }
+
+      console.log(data)
       console.log("Posting the publication to the server")
 
       const addPublication = functions.httpsCallable('addPublication')
       addPublication(data).then(result => {
         console.log("Posted Successfuly")
-        window.location.href = this.$store.getters.getPagAccount()
+        this.$router.push('/account')
       }).catch(error => {
         console.error("ERROR ON REQUEST")
         console.error(error)

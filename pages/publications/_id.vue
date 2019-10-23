@@ -1,13 +1,19 @@
 <template>
   <main>
-    <h1 id="pub-title">
-      {{ publicacion.titulo }}
-    </h1>
-    <section id="pub-info">
-      <span class="pub-detail" id="pub-author">Por: {{ publicacion.autor }}</span> |
-      <span class="pub-detail" id="pub-date">{{ publicacion.fecha }}</span>
-    </section>
-    <div id="pub-content" v-html="htmlContent"></div>
+    <div v-if="inexistente" style="text-align=center">
+      <h1>La publicacion cargada no existe! :(</h1>
+      <h1>ID de la publicacion: '{{ idPub }}'</h1>
+    </div>
+    <span v-else>
+      <h1 id="pub-title">
+        {{ publicacion.titulo }}
+      </h1>
+      <section id="pub-info">
+        <span class="pub-detail" id="pub-author">Por: {{ publicacion.autor }}</span> |
+        <span class="pub-detail" id="pub-date">{{ publicacion.fecha }}</span>
+      </section>
+      <div id="pub-content" v-html="htmlContent"></div>
+    </span>
   </main>
 </template>
 
@@ -57,7 +63,8 @@ export default {
         'Nadie',
         'El contenido de la publicacion',
         '12-12-1967'
-      )
+      ),
+      inexistente: false
     }
   },
   async asyncData ({ route }) {
@@ -66,32 +73,41 @@ export default {
 
     const postContent = (await postRef.get()).data()
 
-    let urls = []
-    if (postContent.imagenes.length > 0){
-      urls = await Promise.all(postContent.imagenes.map(x => {
-        const strRef = storage.ref(x.path)
-        return strRef && strRef.getDownloadURL()
-      }))
+    if (postContent){
+      let urls = []
+      if (postContent.imagenes.length > 0){
+        urls = await Promise.all(postContent.imagenes.map(x => {
+          const strRef = storage.ref(x.path)
+          return strRef && strRef.getDownloadURL()
+        }))
+      }
+  
+      for(let i = 0; i < urls.length; i++){
+        const imgName = postContent.imagenes[i].name
+        const url = urls[i]
+  
+        postContent.imagenes[i].url = urls[i]
+      }
+  
+      const newPub = new Publicacion(
+        postContent.titulo,
+        postContent.autor,
+        postContent.codigo,
+        '1992-01-01',
+        postContent.imagenes
+      )
+  
+      return {
+        idPub: postId,
+        publicacion: newPub
+      }
+    } else {
+      return {
+        idPub: postId,
+        inexistente: true
+      }
     }
 
-    for(let i = 0; i < urls.length; i++){
-      const imgName = postContent.imagenes[i].name
-      const url = urls[i]
-
-      postContent.imagenes[i].url = urls[i]
-    }
-
-    const newPub = new Publicacion(
-      postContent.titulo,
-      postContent.autor,
-      postContent.codigo,
-      '1992-01-01',
-      postContent.imagenes
-    )
-
-    return {
-      publicacion: newPub
-    }
   },
   computed: {
     htmlContent() {
