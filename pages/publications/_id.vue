@@ -122,6 +122,11 @@ main{
   padding: 0 70px;
 }
 
+#pub-content{
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 @media(max-width: 700px) {
   main{
     padding: 0 20px;
