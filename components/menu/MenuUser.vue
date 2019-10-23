@@ -49,9 +49,10 @@ export default {
 </script>
 <style scoped>
 #MenuUser {
+  position:absolute;
+  top: 0;
   display:inline-block;
   width: 100%;
-  max-width: 800px;
   border-bottom: solid #7904ed 4px;
   overflow-y:hidden;
   overflow-x: auto;
@@ -61,13 +62,13 @@ export default {
   font-weight: bold;
   color: #ebebeb;
   background-color: #7904ed;
+  border:none;
 }
 
 #box-menu {
-  width: 800px;
-  max-width: 800px;
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(3,1fr) auto;
+  grid-template-columns: repeat(4,1fr) auto;
 }
 #MenuUser > #box-menu >.ItemMenuUser{
   display: flex;
@@ -78,7 +79,7 @@ export default {
 
 #box-opcion
 {
-  grid-column: 4;
+  grid-column: 5;
   height: 50px;
 }
 
@@ -101,13 +102,18 @@ export default {
 }
 #icon-cog {
   width: 40px;
-  margin: 5px 12px;
+  margin: 5px 20px;
 }
 
 @media(max-width: 800px) {
   #box-menu {
   width: 100%;
-  grid-template-columns: repeat(3,1fr) auto;
+  grid-template-columns: repeat(4,1fr) auto;
+}
+#box-opcion
+{
+  grid-column: 6;
+
 }
 }
 @media(max-width: 500px) {
@@ -115,5 +121,24 @@ export default {
   width: 100%;
   grid-template-columns: repeat(2,1fr) auto;
 }
+#box-opcion
+{
+  grid-column: 5;
+
+}}
+@media(max-width: 400px) {
+  #box-menu {
+    font-size: 0.8em;
+}
+#box-opcion
+{
+  grid-column: 4;
+  height: 40px;
+}
+#icon-cog {
+  width: 30px;
+  margin: 5px 20px;
+}
+
 }
 </style>

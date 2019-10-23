@@ -18,7 +18,7 @@ export default {
 </script>
 <style scoped>
 #container-register{
-  background: linear-gradient(45deg, #8100e2, #690bff);
+  background-color: #292929;
   margin: 0 auto;
   margin-top: 60px;
   padding: 20px 0;
@@ -61,6 +61,7 @@ a:visited{
 
 @media screen and (max-width: 480px) {
   #container-register {
+    background-color: #fff;
     max-width: 100%;
     height: 100vh;
     margin: 0;

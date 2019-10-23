@@ -99,7 +99,7 @@ export default {
 }
 
 #icon-user > h3 {
-  display:none;
+  display:flex;
   padding: 0 10px;
   height: 40px;
   background-color: #272727;
@@ -109,10 +109,13 @@ export default {
   justify-content: center;
   text-align: center;
   margin: 0;
+  opacity: 0;
+  -webkit-transition: opacity 0.5s;
+  -transition: opacity 0.5s;
 }
 
 .icon-menu > h3 {
-  display:none;
+  display:flex;
   padding: 0 10px;
   height: 40px;
   background-color: #272727;
@@ -121,14 +124,17 @@ export default {
   align-items: center;
   justify-content: center;
   margin: 0;
+  opacity: 0;
+  -webkit-transition: opacity 0.5s;
+  -transition: opacity 0.5s;
 }
 
 .icon-menu:hover > h3 {
-  display:flex;
+  opacity: 1;
 }
 
 #icon-user:hover > h3 {
-  display:flex;
+  opacity: 1;
 }
 
 </style>

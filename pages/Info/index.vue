@@ -33,19 +33,6 @@
         the leap into electronic typesetting, remaining essentially unchanged.
       </p>
     </div>
-    <footer>
-      <div id="info-icon">
-        <a href="#"><img src="@/assets/icon-login/facebook-f.svg"></a>
-        <a href="#"><img src="@/assets/icon-login/twitter.svg"></a>
-        <a href="#"><img src="@/assets/info/instagram.svg"></a>
-        <a href="#"><img src="@/assets/icon-login/linkedin-in.svg"></a>
-        <a href="#"><img src="@/assets/UNI.svg"></a>
-      </div>
-      <div id="info-uni">
-        <p><span>Teléfono :</span> 8257-6035</p>
-        <p><span>Dirección :</span> Entrada a La Tunoza,Antigua Hacienda el Higo, Estelí, Nicaragua.</p>
-      </div>
-    </footer>
   </section>
 </template>
 <script>
@@ -90,36 +77,6 @@ export default {
     font-size: 1em;
 }
 
-footer {
-  margin-top: 100px;
-  width: 100%;
-  height: 200px;
-  background: linear-gradient(45deg, #8100e2, #690bff);
-  display: grid;
-  grid-template-columns: 1fr 300px;
-}
-
-footer > div > a > img {
-  height: 30px;
-  margin: 30px 10px;
-}
-
-footer > div {
-  font-size: 1em;
-  color: #ffffff;
-}
-footer > div > p > span {
-  font-weight: bold;
-}
-
-footer > #info-icon {
-  padding: 10px 20px;
-}
-
-footer > #info-uni {
-  padding: 30px 10px;
-}
-
 @media screen and (max-width: 650px) {
 
 .container-info {
@@ -129,19 +86,6 @@ footer > #info-uni {
     padding: 10%;
 }
 
-
-footer {
-  display: inline-block;
-  height: auto;
-}
-
-footer > #info-uni {
-  width: 300px;
-  padding: 0;
-  padding-left: 30px;
-  padding-bottom: 50px;
-}
- 
 }
 
 </style>
