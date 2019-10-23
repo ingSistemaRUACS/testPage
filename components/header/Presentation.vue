@@ -7,10 +7,12 @@
     </nuxt-link>
   </div>
     <div id="info">
+      <div>
       <h1>{{getPresent.title}}</h1>
       <p>
         {{getPresent.info}}
       </p>
+    </div>
     </div>
     <img v-if="getPresent.img" :src="require(`@/assets/present/${getPresent.img}`)" id="Background-image" />
   </section>
@@ -25,17 +27,16 @@ export default {
 </script>
 <style scoped>
 #presentation {
-  grid-column: 2;
-  position: relative;
-  width: 100%;
-  height: 550px;
+  position:fixed;
+  z-index: 0;
+  width: calc(100vw - 40px);
+  height: 100vh;
   background: linear-gradient(45deg, #8100e2, #690bff);
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;
   color: #ffffff;
   margin: 0;
-  margin-bottom: 50px;
 }
 
 #presentation > #top-bar {
@@ -72,67 +73,71 @@ export default {
 #presentation > #Background-image {
   grid-column: 2;
   grid-row: 2;
-  width: 95%;
-  margin: auto 2.5%;
+  width: 100%;
+  margin: auto 0;
   opacity: 0.9;
 }
 
 #presentation > #info {
   grid-column: 1;
   grid-row: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 40vw;
-  margin: auto 0;
+  height: 100%;
+  margin: 0;
 }
 
-#presentation > #info > h1 {
+#presentation > #info > div > h1 {
   max-width: 400px;
   font-size: 2em;
   margin: 0 auto;
   margin-bottom: 20px;
 }
 
-#presentation > #info > p {
+#presentation > #info > div > p {
   max-width: 400px;
   margin: 0 auto;
   font-size: 1em;
 }
+@media screen and (min-width: 1281px) and (max-width: 1920px) {
+#top-bar > a {
 
+  font-size: 1.1em;
+}
+
+#icon-uni {
+  width: 50px;
+  display: inline-block;
+}
+}
 @media screen and (min-width: 0px) and (max-width: 900px) {
   #presentation {
-    position: relative;
-    height: auto;
     grid-template-columns: 100%;
-    grid-template-rows: auto auto 1fr;
+    grid-template-rows: auto auto 1fr auto;
   }
 
   #presentation > #Background-image {
     grid-column: 1;
-    grid-row: 3;
-    width: 95%;
-    margin:2.5%;
+    grid-row: 4;
+    width: 80%;
+    margin: 0 10%;
   }
 
   #presentation > #info {
-    font-size: 0.8em;
     grid-row: 2;
-    width: 90%;
-    margin: 30px 5%;
+    width: 80%;
+    margin: 5% 10%;
     text-align: center;
-  }
-
-  #presentation > #info > h1 {
-    width: 100%;
-  }
-
-  #presentation > #info > p {
-    width: 100%;
+    font-size: 0.8em;
   }
 
   #presentation > #top-bar {
   grid-column:1;
   grid-row: 1;
-  width: 90%;
-  margin: 0 5%;
+  width: 100%;
+  margin: 0;
   height: 3.5em;
   display:inline-block;
 }
@@ -144,11 +149,12 @@ export default {
   font-size: 0.9em;
   color: #fff;
   align-items: center;
-  justify-items: center;
+  justify-content: center;
 }
 
 #icon-uni {
   display: none;
 }
 }
+
 </style>

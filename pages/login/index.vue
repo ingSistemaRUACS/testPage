@@ -38,12 +38,12 @@ export default {
 #icon-user
 {
   display:block;
-  width: 100px;
-  margin: 5px auto;
+  width: 70px;
+  margin: 15px auto;
 }
 
 .button-login {
-  background-color: #ffffff;
+  color: #ffffff;
   width: 250px;
   height: 50px;
   display: flex;
@@ -64,15 +64,19 @@ export default {
 }
 
 #button-Google {
-  color: #db4a39;
+  background-color: #db4a39;
 }
 
 #button-Facebook {
-  color: #3b5998;
+  background-color: #3b5998;
 }
 
 #button-Twitter {
-  color: #00acee;
+  background-color: #00acee;
 }
-
+@media screen and (max-width: 480px) {
+  #icon-user {
+  filter: invert(90%);
+}
+}
 </style>

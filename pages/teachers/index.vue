@@ -32,8 +32,9 @@ export default {
 <style scoped>
 @media screen and (min-width: 320px) and (max-width: 579px) {
   article {
+    max-width: 800px;
     width: 100%;
-    margin: 50px 0;
+    margin: 50px auto;
   }
   .ListTeachers {
     width: 260px;

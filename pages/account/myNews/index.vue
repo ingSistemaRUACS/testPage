@@ -1,6 +1,6 @@
 <template>
     <article>
-        <nuxt-link to="/publications/new">Nueva Publicacion</nuxt-link>
+        <nuxt-link id="btn-public" to="/publications/new">Nueva Publicacion</nuxt-link>
     </article>
 </template>
 <script>
@@ -19,3 +19,13 @@ export default {
     }
 }
 </script>
+<style scoped>
+#btn-public {
+  background-color: #8100e2;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  border: none;
+  margin: 10px;
+}
+</style>

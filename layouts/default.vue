@@ -4,9 +4,10 @@
       <Menu />
       <Presentation />
     </header>
-    <div id="pag">
-        <nuxt id="info-pag"/>
-    </div>
+    <div id="pag-article"> 
+      <nuxt />
+       <Footer />
+    </div>  
   </div>
 </template>
 
@@ -15,11 +16,13 @@ import { mapActions } from 'vuex'
 
 import Menu from "@/components/menu/Menu";
 import Presentation from "@/components/header/Presentation";
+import Footer from "@/components/Footer";
 
 export default {
   components: {
     Presentation,
-    Menu
+    Menu,
+    Footer
   },
   methods: {
     ...mapActions({ ChargeUser: "auth/ChargeUser" })
@@ -28,30 +31,29 @@ export default {
 </script>
 <style>
 #container {
-  width: 100%;
-  height: 100vh;
   position: relative;
+  width: calc(100vw - 40px);
   background: #fff;
   margin: 0;
+  margin-left: 40px;
   padding: 0;
 }
 
-#pag {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 30px 1fr;
+#pag-article {
+  margin: 0;
+  position:relative;
+  padding-top: 100px;
+  background: #fff;
+  margin-top: 100vh;
+  z-index: 10;
 }
-
-#info-pag {
-  width: 100%;
-  grid-column: 2;
+#pag-article > article {
+  min-height: 100vh;
+  margin: 0 auto;
 }
-
 header {
   width: 100%;
   min-height: 100px;
-  display: grid;
-  grid-template-columns: 30px 1fr;
 }
 
 html {

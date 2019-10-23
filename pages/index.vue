@@ -1,7 +1,7 @@
 <template>
-  <main>
-    <Timeline :publicaciones="publicaciones" id="tm" />
-  </main>
+<article>
+  <Timeline :publicaciones="publicaciones" id="tm" />
+</article>
 </template>
 <script>
 import { mapMutations } from 'vuex'
@@ -34,8 +34,20 @@ export default {
 }
 </script>
 <style>
-#tm{
+article{
+  max-width: 800px;
+  width: 100%;
+}
+#tm {
+  min-width: 300px;
   width: 60%;
   margin: 0 auto;
+}
+@media screen and (max-width: 400px) {
+  #tm {
+  min-width: 100%;
+  width: 100%;
+  margin: 0;
+}
 }
 </style>
