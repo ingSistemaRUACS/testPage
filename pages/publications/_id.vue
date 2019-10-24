@@ -22,7 +22,11 @@
 
         <div class="asistentes-ev">
           Quienes asistiran:
-          
+          <div v-for="ass in asistentes" v-bind:key="ass.id">
+            Carnet: {{ ass.carnet }} |
+            Seccion: {{ ass.seccion }}
+          </div>
+
           <button @click="sayYoullGo">Asistiré!</button>
         </div>
       </div>
@@ -33,7 +37,8 @@
 <script>
 import Publicacion from '@/data/publicacion/publicacion'
 import showdown from 'showdown'
-import { storage, firestore } from '@/plugins/firebase'
+import { storage, firestore, functions, db } from '@/plugins/firebase'
+import { mapGetters } from 'vuex'
 
 let findImgURL = (imgURL) => '#'
 
@@ -65,7 +70,7 @@ const conv = new showdown.Converter({
 })
 
 export default {
-  layout: 'publication',
+  // layout: '',
   created () {
     findImgURL = this.findImg
   },
@@ -78,7 +83,9 @@ export default {
         '12-12-1967',
         false
       ),
-      inexistente: false
+      inexistente: false,
+      userVerified: this.isStudentVerified,
+      asistentes: []
     }
   },
   async asyncData ({ route }) {
@@ -112,23 +119,40 @@ export default {
         postContent.esEvento,
         postContent.fechaEvento
       )
-  
+
+      let listaCarnets = []
+
+      if (newPub.esEvento){
+        const estudiantes = db.ref('events/' + postId)
+        const listaUsuarios =(await estudiantes.once('value')).val()
+        const listaIds = (listaUsuarios && listaUsuarios.users) || []
+        listaCarnets = (await Promise.all(
+          listaIds.map(
+            async usr => {
+              return db.ref('users/' + usr).once('value')
+            }
+          )
+        )).map(result => ({id: result.key, carnet: result.val()['carnet'], seccion: result.val()['section']}))
+      }
+
       return {
         idPub: postId,
-        publicacion: newPub
+        publicacion: newPub,
+        asistentes: listaCarnets
       }
     } else {
       return {
         idPub: postId,
-        inexistente: true
+        inexistente: true,
+        asistentes: []
       }
     }
-
   },
   computed: {
     htmlContent() {
       return conv.makeHtml(this.publicacion.contenido)
-    }
+    },
+    ...mapGetters['isStudentVerified']
   },
   methods: {
     findImg(imgName) {
@@ -136,7 +160,10 @@ export default {
       return foundImg && foundImg.url
     },
     sayYoullGo(){
-
+      const addUserToEvent = functions.httpsCallable('addUserToEvent')
+      addUserToEvent({ eventId: this.idPub }).then(x => {
+        this.$router.$forceUpdate()
+      })
     }
   }
 }
