@@ -2,7 +2,9 @@ import Vuex from 'vuex'
 
 import Autentication from '~/data/Autentication'
 import Users from '~/data/Users'
+import bod from '~/data/bod'
 
+const Bod = new bod()
 const Auth = new Autentication()
 const User = new Users()
 
@@ -92,19 +94,24 @@ const auth = () => {
       },
       async ChargeListVerifyUser ({ commit, state }) {
         const userVerify = await User.UsersVerify()
-
-        if (User.userKey(state.ListVerify, userVerify.id) < 0) {
-          commit('UpdateListVerify', userVerify)
+        commit('UpdateListVerify', userVerify)
+      },
+      async verifyUsers ({ dispatch, state }, users) {
+        const finaly = await User.ValidUsers(users)
+        if (finaly) {
+          dispatch('ChargeListVerifyUser')
         }
+        this.$router.push('/account/myNews')
       },
-      async RemoveVerifyUser ({ commit, state }) {
-        const key = await User.UserRemoveMessage()
-        const i = User.userKey(state.ListVerify, key)
-        commit('RemoveListVerify', i)
+      // el sigunete codigo debe de ser eliminado ya que solo es para realizar pruebas
+      async bodActive () {
+        await Bod.run()
+        this.$router.push('/account/systemUser')
       },
-      verifyUsers ({ dispatch }, users) {
-        User.ValidUsers(users)
+      async bodDelete () {
+        await Bod.Delete()
       }
+
     },
     mutations: {
       editUser (state, user) {
@@ -122,14 +129,16 @@ const auth = () => {
       UpdateStockMessage (state, resp) {
         state.StockMessage = resp
       },
-      UpdateListVerify (state, user) {
-        state.ListVerify.push(user)
+      UpdateListVerify (state, listUser) {
+        if (listUser) {
+          state.ListVerify = []
+          state.ListVerify = listUser
+        }
       },
       RemoveListVerify (state, i) {
         state.ListVerify.splice(i, 1)
       },
       ChangePresent (state, present) {
-        console.log(present)
         state.present = present
       }
     }
