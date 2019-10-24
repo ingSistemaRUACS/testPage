@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div id="title-event">
+    <div id="title-event" v-if="esEvento">
       <img src="@/assets/option/calendar-alt.svg" id="icon-event">
       <h1>Evento</h1>
       <span>{{(new Date(date)).toLocaleDateString()}}</span>
@@ -26,7 +26,8 @@ export default {
     'date',
     'title',
     'description',
-    'postId'
+    'postId',
+    'esEvento'
   ]
 }
 </script>

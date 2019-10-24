@@ -6,6 +6,8 @@
       :title="post.titulo"
       :description="post.descripcion"
       :postId="post.id"
+      :esEvento="post.esEvento"
+      :date="post.fechaEvento"
       class="tm-card" />
   </section>
 </template>
