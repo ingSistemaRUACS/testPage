@@ -2,8 +2,8 @@
   <article>
     <div class="ListTeachers">
       <Teacher
-        v-for="(item,key) in ListTeacher"
-        :src="require(item.photo)"
+        v-for="(item,key) in arrayDocent"
+        :src="item.photo"
         :name="item.name"
         :key="key"
       />
@@ -11,11 +11,16 @@
   </article>
 </template>
 <script>
-import ListTeacher from './listTechers.js'
+import ListTeacher from './listTechers'
 import { mapMutations } from 'vuex'
 import Teacher from '@/components/teachers/Teacher'
 
 export default {
+  data() {
+    return {
+      arrayDocent:ListTeacher
+    }
+  },
   components: {
     Teacher
   },

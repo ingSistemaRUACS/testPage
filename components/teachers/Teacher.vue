@@ -22,17 +22,16 @@ export default {
 </script>
 <style scoped>
 .Teacher {
-  max-width: 250px;
   height: 75px;
 }
 .Teacher img{
   float: left;
-  width: 50px;
-  height: 50px;
+  width: 60px;
 }
 .Teacher h1{
   float: left;
-  font-size: 1em;
+  font-size: 0.8em;
+  font-weight: normal;
   color: #5c5454;
   text-align: center;
   display: flex;
