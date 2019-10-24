@@ -9,7 +9,6 @@
         {{ publicacion.titulo }}
       </h1>
       <section id="pub-info">
-        <span class="pub-detail" id="pub-author">Por: {{ publicacion.autor }}</span> |
         <span class="pub-detail" id="pub-date">{{ publicacion.fecha }}</span>
       </section>
       <div id="pub-content" v-html="htmlContent"></div>
@@ -22,9 +21,9 @@
 
         <div class="asistentes-ev">
           Quienes asistiran:
-          <div v-for="ass in asistentes" v-bind:key="ass.id">
-            Carnet: {{ ass.carnet }} |
-            Seccion: {{ ass.seccion }}
+          <div class="asistente" v-for="ass in asistentes" v-bind:key="ass.id">
+            <strong>Carnet:</strong> {{ ass.carnet }} |
+            <strong>Seccion:</strong> {{ ass.seccion }}
           </div>
 
           <button @click="sayYoullGo">Asistiré!</button>
@@ -187,6 +186,20 @@ main{
 #pub-content{
   max-width: 900px;
   margin: 0 auto;
+}
+
+.asistentes-ev{
+  margin: 20px;
+  padding: 5px;
+  width: 20em;
+  border-radius: 2px;
+  box-shadow: 0 0 5px 0 gray;
+}
+
+.asistente{
+  margin: 20px 0;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
 }
 
 @media(max-width: 700px) {
