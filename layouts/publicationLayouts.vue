@@ -12,6 +12,7 @@
 </template>
 
 <script>
+// solo para ....
 import { mapActions } from 'vuex'
 
 import Menu from "@/components/menu/Menu";
