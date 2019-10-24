@@ -66,8 +66,6 @@ import VueShowdown from 'vue-showdown'
 import Card from '@/components/timeline/Card'
 import ImgInputer from 'vue-img-inputer'
 
-import {clipperPreview, clipperFixed} from 'vuejs-clipper'
-
 // import ImgInputer from 'vue-img-inputer'
 import ImgInp from '@/components/publications/ImgInp'
 import { functions, storage } from '@/plugins/firebase'
@@ -81,8 +79,6 @@ export default {
     'img-inp': ImgInp,
     'card': Card,
     'crop-preview': clipperPreview,
-    'crop-fixed': clipperFixed,
-    'img-inputer': ImgInputer
   },
   created () {
     imgURICallback = this.getImgURL
