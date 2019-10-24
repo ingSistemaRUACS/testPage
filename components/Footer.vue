@@ -8,7 +8,7 @@
         <a href="#"><img src="@/assets/UNI.svg"></a>
       </div>
       <div id="info-uni">
-        <p><span><Table>Telefóno</Table> :</span>8565 1485</p>
+        <p><span>Telefóno :</span>8565 1485</p>
         <p><span>Dirección :</span> Entrada a La Tunoza, Antigua Hacienda el Higo, Estelí, Nicaragua.</p>
       </div>
     </footer>
