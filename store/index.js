@@ -2,9 +2,7 @@ import Vuex from 'vuex'
 
 import Autentication from '~/data/Autentication'
 import Users from '~/data/Users'
-import bod from '~/data/bod'
 
-const Bod = new bod()
 const Auth = new Autentication()
 const User = new Users()
 
@@ -99,16 +97,7 @@ const auth = () => {
           dispatch('ChargeListVerifyUser')
         }
         this.$router.push('/account/myNews')
-      },
-      // el sigunete codigo debe de ser eliminado ya que solo es para realizar pruebas
-      async bodActive () {
-        await Bod.run()
-        this.$router.push('/account/systemUser')
-      },
-      async bodDelete () {
-        await Bod.Delete()
       }
-
     },
     mutations: {
       editUser (state, user) {
