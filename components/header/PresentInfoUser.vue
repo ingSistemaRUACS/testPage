@@ -19,6 +19,7 @@
         </div>
       </div>
     </div>
+    <img src="@/assets/arrow-down-solid.svg" id="arrow-down" />
   </section>
 </template>
 <script>
@@ -80,6 +81,16 @@ export default {
   width: 100%;
   margin: auto 0;
   opacity: 0.9;
+}
+
+#presentation > #arrow-down{
+  /* transform: scale(); */
+  top: calc(100% - 80px);
+  left: 50%;
+  position: absolute;
+  opacity: 0.5;
+  animation: move-up-down 3s cubic-bezier(0.68, 0.57, 0.6, 1.56) infinite;
+  transform-origin: center;
 }
 
 #presentation > #form-info {
@@ -250,5 +261,32 @@ export default {
   color: #838383;
   margin: 1px;
 }
+}
+
+@keyframes move-up-down {
+  0%{
+    opacity: 0;
+    transform: translateY(-40px);
+    width: 30px;
+  }
+  85%{
+    opacity: 0.8;
+    transform: translateY(0);
+    /* width: 35px; */
+  }
+  86%{
+    opacity: 0.8;
+    transform: translateY(0);
+  }
+
+  /* 92%{
+    transform: translateY(-10px);
+  } */
+
+  100%{
+    opacity: 0;
+    width: 30px;
+    /* transform: translateY(0); */
+  }
 }
 </style>

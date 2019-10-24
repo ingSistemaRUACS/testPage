@@ -35,10 +35,15 @@ export default {
       const offSetWindow = -(window.pageYOffset * 0.4) | 0
       const offsetOpacity = window.pageYOffset/window.innerHeight
 
-      infoSec.style.transform = 'translateY(' + offSetWindow + 'px)'
-      imgSec.style.transform = 'translateY(' + offSetWindow + 'px)'
-      infoSec.style.opacity = 1-offsetOpacity*1.5
-      imgSec.style.opacity = 1- offsetOpacity*1.5
+      if (infoSec){
+        infoSec.style.transform = 'translateY(' + offSetWindow + 'px)'
+        infoSec.style.opacity = 1-offsetOpacity*1.5
+      }
+
+      if (imgSec){
+        imgSec.style.transform = 'translateY(' + offSetWindow + 'px)'
+        imgSec.style.opacity = 1- offsetOpacity*1.5
+      }
       requestAnimationFrame(this.doParallax)
     },
     scrollPage(){
@@ -203,7 +208,7 @@ export default {
   85%{
     opacity: 0.8;
     transform: translateY(0);
-    width: 35px;
+    /* width: 35px; */
   }
   86%{
     opacity: 0.8;
@@ -216,7 +221,7 @@ export default {
 
   100%{
     opacity: 0;
-    width: 35px;
+    width: 30px;
     /* transform: translateY(0); */
   }
 }
