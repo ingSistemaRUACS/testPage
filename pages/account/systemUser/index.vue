@@ -4,7 +4,7 @@
       <h2>Lista de usuarios que solicitan verificacion</h2>
       <h4>Cantidad de solicitudes : {{length}}</h4>
     </div>
-    <div id="listUsers">
+    <div v-if="getListVerify" id="listUsers">
     <UserVerify
       v-for="(item, index) in getListVerify"
       :key="index"
@@ -29,7 +29,7 @@ export default {
     ...mapGetters(["getListVerify"])
   },
   data () {
-    return { length:0 }
+    return { length:0,}
   },
   methods: {
     ...mapMutations({
@@ -53,14 +53,14 @@ export default {
       if (val) {
         this.length = val.length
       }
-      
     }
   },
   created() {
     this.ChangaPagAccount("Usuarios");
-    this.ChargeListVerifyUser();
-    this.RemoveVerifyUser();
-  }
+  },
+  mounted() {
+     this.ChargeListVerifyUser();
+  },
 };
 </script>
 <style scoped>
