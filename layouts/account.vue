@@ -43,9 +43,11 @@ export default {
   background: #fff;
   margin-top: 100vh;
   z-index: 10;
+  padding: 0;
 }
 
 #pag-article > article {
+  margin-top: 100px;
    min-height: 100vh;
 }
 

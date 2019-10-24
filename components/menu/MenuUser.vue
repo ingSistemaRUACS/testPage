@@ -49,7 +49,6 @@ export default {
 </script>
 <style scoped>
 #MenuUser {
-  position:absolute;
   top: 0;
   display:inline-block;
   width: 100%;
