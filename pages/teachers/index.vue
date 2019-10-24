@@ -2,15 +2,16 @@
   <article>
     <div class="ListTeachers">
       <Teacher
-        :src="require('@/assets/defaulUser-100.jpg')"
-        name="Mcs. Nombre Apellido"
-        v-for="item in 15"
-        :key="item"
+        v-for="(item,key) in ListTeacher"
+        :src="require(item.photo)"
+        :name="item.name"
+        :key="key"
       />
     </div>
   </article>
 </template>
 <script>
+import ListTeacher from './listTechers.js'
 import { mapMutations } from 'vuex'
 import Teacher from '@/components/teachers/Teacher'
 
