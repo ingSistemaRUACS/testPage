@@ -1,7 +1,7 @@
 export default [
   {
     title: '¿Qué es la Ingeniería de Sistema?',
-    info: 'Es la ingeniería que se encarga del diseño, la programación, la implantación y el mantenimiento de sistemas. A diferencia de otras especialidades, esta disciplina no se ocupa de productos tangibles sino de productos lógicos.',
+    info: 'La Ingeniería de Sistemas es un campo de estudio interdisciplinario nuevo que envuelve a la tecnología, la administración y las ciencias sociales. Abarca actividades en las áreas siguientes: Tecnología Política, Ingeniería, Administración, Innovación, Emprendimiento, Sistemas y Análisis de Decisiones, Investigación de Operaciones, Manufactura, Desarrollo de Productos, Ingeniería Industrial.',
     img: 'presentHome.svg'
   },
   {

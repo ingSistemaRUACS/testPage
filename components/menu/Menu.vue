@@ -16,8 +16,12 @@
         <h3>Inicio</h3>
       </nuxt-link>
       <nuxt-link class="icon-menu" to="/info">
-        <img src="@/assets/icon-menu/info.svg" alt="info">
-        <h3>Informacion</h3>
+        <img src="@/assets/icon-menu/laptop.svg" alt="info">
+        <h3>Carrera</h3>
+      </nuxt-link>
+        <nuxt-link class="icon-menu" to="/info/student">
+        <img src="@/assets/info/user-tie.svg" alt="info">
+        <h3>Estudiante</h3>
       </nuxt-link>
       <nuxt-link class="icon-menu" to="/teachers">
         <img src="@/assets/icon-menu/chalkboard-teacher.svg" alt="teacher">
