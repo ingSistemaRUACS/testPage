@@ -60,11 +60,4 @@ export default class Autentication {
       db.ref(`users/${id}`).on('value', e => resolve(e.val()))
     })
   }
-
-  async Delete () {
-    const user = await firebase.auth().currentUser
-    await db.ref(`users/${user.uid}`).remove()
-    await db.ref(`menssage/validuser/${user.uid}`).remove()
-    await firebase.auth().signOut()
-  }
 }

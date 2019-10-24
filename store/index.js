@@ -65,11 +65,6 @@ const auth = () => {
         commit('resetUser')
         this.$router.push('/')
       },
-      async UserRemove ({ commit }) {
-        await Auth.Delete()
-        commit('resetUser')
-        this.$router.push('/')
-      },
       async UpdateStudentData ({ state }, data) {
         await Auth.UpdateStudentData(state.user.id, !!state.student, data)
       },
@@ -131,6 +126,7 @@ const auth = () => {
         state.ListVerify.splice(i, 1)
       },
       ChangePresent (state, present) {
+        console.log(present)
         state.present = present
       }
     }
