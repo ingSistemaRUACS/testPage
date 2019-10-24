@@ -52,7 +52,7 @@ export default {
   top: 0;
   display:inline-block;
   width: 100%;
-  border-bottom: solid #7904ed 4px;
+  border-bottom: solid #0b69ff 4px;
   overflow-y:hidden;
   overflow-x: auto;
 }
@@ -60,7 +60,7 @@ export default {
 .ItemActiveMenu {
   font-weight: bold;
   color: #ebebeb;
-  background-color: #7904ed;
+  background:  #0b69ff;
   border:none;
 }
 

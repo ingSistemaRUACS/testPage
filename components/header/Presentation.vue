@@ -8,24 +8,42 @@
     </div>
     <div id="info">
       <div>
-        <h1>{{getPresent.title}}</h1>
+        <h1>{{title}}</h1>
         <p>
-          {{getPresent.info}}
+          {{info}}
         </p>
       </div>
     </div>
-    <img v-if="getPresent.img" :src="require(`@/assets/present/${getPresent.img}`)" id="Background-image" />
+    <img v-if="img != ''" :src="require(`@/assets/present/${img}`)" id="Background-image" />
     <img src="@/assets/arrow-down-solid.svg" id="arrow-down" @click="scrollPage" />
   </section>
 </template>
 <script>
+import presentInfo from './infoPresent.js'
 import { mapGetters } from "vuex";
 export default {
+  data () {
+    return {
+      title:'',
+      info:'',
+      img:''
+    }
+  },
   created() {
+    this.title = presentInfo[0].title
+    this.info = presentInfo[0].info
+    this.img = presentInfo[0].img
     requestAnimationFrame(this.doParallax)
   },
   computed: {
     ...mapGetters(["getPresent"])
+  },
+  watch: {
+    getPresent(i) {
+    this.title = presentInfo[i].title
+    this.info = presentInfo[i].info
+    this.img = presentInfo[i].img
+    }
   },
   methods: {
     doParallax() {
@@ -53,7 +71,7 @@ export default {
       })
     }
   }
-};
+}
 </script>
 <style scoped>
 #presentation {
@@ -61,7 +79,7 @@ export default {
   z-index: 0;
   width: calc(100vw - 40px);
   height: 100vh;
-  background: linear-gradient(45deg, #8100e2, #690bff);
+  background: linear-gradient(45deg, #5700e2, #0b69ff);
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;
@@ -156,15 +174,17 @@ export default {
 }
 @media screen and (min-width: 0px) and (max-width: 900px) {
   #presentation {
+    padding: 0;
     grid-template-columns: 100%;
-    grid-template-rows: auto auto 1fr auto;
+    grid-template-rows: auto auto 1fr;
   }
 
   #presentation > #Background-image {
     grid-column: 1;
-    grid-row: 4;
+    grid-row: 3;
     width: 80%;
     margin: 0 10%;
+    margin-top: 5vh;
   }
 
   #presentation > #info {
@@ -197,7 +217,17 @@ export default {
 #icon-uni {
   display: none;
 }
+#presentation > #arrow-down {
+ margin-top: -5vh;
 }
+}
+
+@media screen and (min-width: 0px) and (max-width: 350px) {
+  
+#top-bar > a {
+  font-size: 0.7em;
+
+}}
 
 @keyframes move-up-down {
   0%{

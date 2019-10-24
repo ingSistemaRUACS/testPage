@@ -106,7 +106,7 @@ export default {
 }
 #options > button{
   grid-column: 2;
-  background-color: #690bff;
+  background:#5700e2;
   border: none;
   width: 200px;
   height: 40px;

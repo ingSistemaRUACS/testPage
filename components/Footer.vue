@@ -8,8 +8,8 @@
         <a href="#"><img src="@/assets/UNI.svg"></a>
       </div>
       <div id="info-uni">
-        <p><span>TelÃ©fono :</span> 8257-6035</p>
-        <p><span>DirecciÃ³n :</span> Entrada a La Tunoza,Antigua Hacienda el Higo, EstelÃ­, Nicaragua.</p>
+        <p><span><Table>Telefóno</Table> :</span>8565 1485</p>
+        <p><span>Dirección :</span> Entrada a La Tunoza, Antigua Hacienda el Higo, Estelí, Nicaragua.</p>
       </div>
     </footer>
 </template>
@@ -18,7 +18,7 @@ footer {
   margin-top: 100px;
   width: calc(100vw - 40px);
   height: 200px;
-  background: linear-gradient(45deg, #8100e2, #690bff);
+  background: linear-gradient(45deg, #5700e2, #0b69ff);
   display: grid;
   grid-template-columns: 1fr 300px;
 }

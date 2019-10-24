@@ -55,12 +55,12 @@ a:visited{
 
 @media screen and (max-width: 480px) {
   #container-register {
-    position:absolute;
-    max-width: 100%;
+    max-width: calc(100vw - 40px);
     min-height: 100vh;
     height: auto;
     margin: 0;
-    top: 0;
+    margin-left: 40px;
+    font-size: 0.8em;
   }
 }
 </style>

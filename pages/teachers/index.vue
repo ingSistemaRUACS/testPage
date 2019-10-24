@@ -22,10 +22,7 @@ export default {
     ...mapMutations(['ChangePresent'])
   },
   beforeMount(){
-    this.ChangePresent({
-      title:'Docentes',
-      info:'A continuaciรณn, podrรก observar los docentes que imparte en el recinto universitario.',
-      img:'presentTecher.svg'})
+    this.ChangePresent(2)
   }
 }
 </script>

@@ -36,7 +36,7 @@ export default {
   z-index: 0;
   width: calc(100vw - 40px);
   height: 100vh;
-  background: linear-gradient(45deg, #8100e2, #690bff);
+  background: linear-gradient(45deg, #5700e2, #0b69ff);
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;

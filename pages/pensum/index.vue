@@ -23,10 +23,7 @@ export default {
     ...mapMutations(['ChangePresent'])
   },
   beforeMount(){
-    this.ChangePresent({
-      title:'Pensum',
-      info:'A continuaciÃ³n, podrÃ¡ observar un diagrama con las clases ordenadas por aÃ±o y semestre que componen la carrera.',
-      img:'presentPensum.svg'})
+    this.ChangePresent(1)
   }
 }
 </script>

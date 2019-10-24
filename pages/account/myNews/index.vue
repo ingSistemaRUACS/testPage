@@ -21,8 +21,9 @@ export default {
 </script>
 <style scoped>
 #btn-public {
-  background-color: #8100e2;
-  width: 50px;
+  background:  #0b69ff;
+  color: white;
+  width: 70px;
   height: 50px;
   padding: 10px;
   border: none;

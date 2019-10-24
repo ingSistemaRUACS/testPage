@@ -40,14 +40,14 @@
         <Input
           type="text"
           title="Carnet"
-          message="Utiliza - y mayuscula"
+          message="Utiliza - y mayuscula."
           v-model="carnet"
           :disabled="DesactiveDataStudent || verify"
         />
         <Input
           type="text"
-          title="Seccion"
-          message="Utiliza - y mayusculas"
+          title="Grupo de estudio"
+          message="Utiliza - y mayusculas."
           v-model="section"
           :disabled="DesactiveDataStudent"
         />
@@ -69,21 +69,12 @@
       <h2>Verificar cuenta</h2>
       <section id="verify-user">
         <p v-if="!verify && !StockMessage">
-          Por favor registrar primero su carnet y seccion antes de solicitar la
-          verificacion de la cuenta, esto servira para validarte como
-          estudiantes de la UNI.
+          Por favor registrar primero su carnet y grupo de estudio antes de solicitar la 
+          verificación de la cuenta, esto servirá para validarte como estudiantes de la UNI.
         </p>
         <p v-if="verify && !StockMessage">Su cuenta ya fue verificada.</p>
-        <p v-if="!verify && StockMessage">Esperando verificacion.</p>
+        <p v-if="!verify && StockMessage">Esperando verificación.</p>
         <button v-if="!verify && !StockMessage" class="submit" @click="VerifyUser()" :disabled="DesactiveVerify">Solicitar</button>
-      </section>
-      <h2>Eliminar cuenta</h2>
-      <section id="delete-user">
-        <p>
-          Si elimina su cuenta todos los datos y eventos en los que este
-          participando seran eliminados
-        </p>
-        <button class="submit" @click="UserRemove">Eliminar</button>
       </section>
     </section>
   </article>
@@ -187,7 +178,7 @@ export default {
 }
 
 #option > section > h2 {
-  background: linear-gradient(45deg, #8100e2, #690bff);
+  background: linear-gradient(45deg, #5700e2, #0b69ff);
   font-weight: normal;
   font-size: 1.2em;
   color: white;
@@ -197,7 +188,7 @@ export default {
 }
 
 .btn-edit {
-  background-color: #8100e2;
+  background:  #5700e2;
   float: right;
   width: 50px;
   height: 50px;
@@ -216,14 +207,9 @@ export default {
   width: 200px;
 }
 
-#data-user,
-#info-student {
+#data-user {
   display: inline-block;
   width: 100%;
-  margin-top: 10px;
-}
-
-#data-user {
   margin-top: 70px;
 }
 
@@ -235,7 +221,7 @@ export default {
   margin-bottom: 100px;
 }
 .submit {
-  background-color: #690bff;
+  background: #5700e2;
   border: none;
   width: 100px;
   height: 50px;
@@ -247,4 +233,5 @@ export default {
 .submit[disabled] {
   background-color: #757575;
 }
+
 </style>
