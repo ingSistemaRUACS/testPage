@@ -13,6 +13,19 @@
         <span class="pub-detail" id="pub-date">{{ publicacion.fecha }}</span>
       </section>
       <div id="pub-content" v-html="htmlContent"></div>
+
+      <hr>
+
+      <div v-if="publicacion.esEvento">
+        Este evento ocurri{{ (Date.now() < (new Date(publicacion.fechaEvento)).getTime()) ? 'rá' : 'ó' }} en:
+        {{ (new Date(publicacion.fechaEvento)).toLocaleDateString() }}
+
+        <div class="asistentes-ev">
+          Quienes asistiran:
+          
+          <button @click="sayYoullGo">Asistiré!</button>
+        </div>
+      </div>
     </span>
   </main>
 </template>
@@ -62,7 +75,8 @@ export default {
         'Sin Titulo',
         'Nadie',
         'El contenido de la publicacion',
-        '12-12-1967'
+        '12-12-1967',
+        false
       ),
       inexistente: false
     }
@@ -93,8 +107,10 @@ export default {
         postContent.titulo,
         postContent.autor,
         postContent.codigo,
-        '1992-01-01',
-        postContent.imagenes
+        new Date(postContent.publicadoEn).toLocaleDateString(),
+        postContent.imagenes,
+        postContent.esEvento,
+        postContent.fechaEvento
       )
   
       return {
@@ -118,6 +134,9 @@ export default {
     findImg(imgName) {
       const foundImg = this.publicacion.imagenes.find(x=>x.name==imgName)
       return foundImg && foundImg.url
+    },
+    sayYoullGo(){
+
     }
   }
 }

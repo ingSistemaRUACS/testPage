@@ -14,6 +14,7 @@
         <label for="isEventCh">Es un evento?</label>
         <input v-model="isEvent" type="checkbox" name="isEventCh" id="isEventInput">
       </div>
+
       <div v-if="isEvent">
         <label for="eventDetails">Fecha del evento</label>
         <input v-model="eventDate" type="date" name="eventDetails">
@@ -24,7 +25,17 @@
       id="content-input"
       spellcheck="false"
       v-model="liveCode"></textarea>
+
+      <label for="contentInput">Miniatura</label>
+      <img-inputer
+        id="thumbnail-inp"
+        accept="image/*"
+        placeholder=""
+        bottomText=""
+        @onChange="thumbnailAdded"
+        />
       <!-- <input type="hidden" name="user" :value="loggedInEmail"> -->
+    <card :title="postTitle" :description="postDesc" :esEvento="isEvent" :date="eventDate" :imgUrl="thumbURL" id="prev-card"/>
       <p>Imagenes</p>
       <div id="images-container">
         <img-inp
@@ -47,13 +58,15 @@
       :tag="'article'"
       :extensions="[youtubeExtension, imageExtension]"/>
       <hr>
-    <card :title="postTitle" :description="postDesc" id="prev-card"/>
   </section>
 </template>
 
 <script>
 import VueShowdown from 'vue-showdown'
 import Card from '@/components/timeline/Card'
+import ImgInputer from 'vue-img-inputer'
+
+import {clipperPreview, clipperFixed} from 'vuejs-clipper'
 
 // import ImgInputer from 'vue-img-inputer'
 import ImgInp from '@/components/publications/ImgInp'
@@ -66,7 +79,10 @@ export default {
   components: {
     'vue-showdown': VueShowdown.VueShowdown,
     'img-inp': ImgInp,
-    'card': Card
+    'card': Card,
+    'crop-preview': clipperPreview,
+    'crop-fixed': clipperFixed,
+    'img-inputer': ImgInputer
   },
   created () {
     imgURICallback = this.getImgURL
@@ -107,7 +123,13 @@ export default {
       postTitle: '',
       postDesc: '',
       isEvent: false,
-      eventDate: undefined
+      eventDate: undefined,
+      thumbnailImg: ''
+    }
+  },
+  computed: {
+    thumbURL () {
+      return this.thumbnailImg ? URL.createObjectURL(this.thumbnailImg) : ''
     }
   },
   methods: {
@@ -115,6 +137,9 @@ export default {
       this.images.push({img: info, el: comp})
 
       this.getImgURL(this.findImage(info.name))
+    },
+    thumbnailAdded (data){
+      this.thumbnailImg = data
     },
     destr (el) {
       // this.images = this.images.sort
@@ -159,6 +184,16 @@ export default {
           return await imgRef.put(obj.img)
         }
       }))
+
+      let thumbnailPath = ''
+      if (this.thumbnailImg){
+        thumbnailPath = (await postStorage
+          .child(this.thumbnailImg.name)
+          .put(this.thumbnailImg)
+        ).metadata.fullPath
+      }
+
+      data.thumbnail = thumbnailPath
 
       data.imagenes = imgPaths.map(x=>({ name: x.metadata.name, path: x.metadata.fullPath }))
 
@@ -216,5 +251,9 @@ export default {
 
 #nueva-publicacion {
   padding: 0 50px;
+}
+
+#thumbnail-inp .img-inputer__file-name{
+  display: none;
 }
 </style>

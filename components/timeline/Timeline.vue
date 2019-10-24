@@ -8,16 +8,36 @@
       :postId="post.id"
       :esEvento="post.esEvento"
       :date="post.fechaEvento"
+      :imgUrl="thumbnails[post.id].url"
       class="tm-card" />
   </section>
 </template>
 
 <script>
 import Card from './Card'
-export default {
-  data() {
-    return {
+import { storage } from '@/plugins/firebase'
 
+export default {
+  created(){
+    this.publicaciones.forEach(pst => {
+      if (!pst.thumbnail) return
+
+      const imgRef = storage.ref(pst.thumbnail)
+      imgRef.getDownloadURL().then(result => {
+        this.thumbnails[pst.id].url = result
+      })
+    })
+  },
+  methods: {},
+  data() {
+    const thmbs = {}
+    this.publicaciones.forEach(pst => {
+      thmbs[pst.id] = {
+        url: ''
+      }
+    })
+    return {
+      thumbnails: thmbs
     }
   },
   props: [

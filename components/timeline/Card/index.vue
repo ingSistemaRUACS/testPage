@@ -5,7 +5,7 @@
       <h1>Evento</h1>
       <span>{{(new Date(date)).toLocaleDateString()}}</span>
     </div>
-    <img id="thumbnail" src="@/assets/landscape.png" alt="ImagenNoticia">
+    <img id="thumbnail" :src="imgUrl || '@/assets/landscape.png'" alt="ImagenNoticia">
 
     <div id="stats">
       <a href="#"><span id="like-count"><span id="like-num">10</span> Me gustas</span></a> |
@@ -27,7 +27,8 @@ export default {
     'title',
     'description',
     'postId',
-    'esEvento'
+    'esEvento',
+    'imgUrl'
   ]
 }
 </script>
