@@ -42,7 +42,10 @@ export default {
       requestAnimationFrame(this.doParallax)
     },
     scrollPage(){
-      window.scrollTo(0, window.innerHeight)
+      window.scrollTo({
+        top: window.innerHeight,
+        behavior: 'smooth'
+      })
     }
   }
 };
