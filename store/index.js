@@ -22,6 +22,9 @@ const auth = () => {
       isAuthenticated (state) {
         return !!state.user
       },
+      isStudentVerified (state) {
+        return !!(state.student && state.student.verify)
+      },
       isAdmin (state) {
         if (state.student) {
           if (state.student.hasOwnProperty('admin')) {
