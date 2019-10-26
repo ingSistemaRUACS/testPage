@@ -20,13 +20,13 @@
         {{ (new Date(publicacion.fechaEvento)).toLocaleDateString() }}
 
         <div class="asistentes-ev">
-          Quienes asistiran:
+          <h1>Quienes asistiran: </h1>
           <div class="asistente" v-for="ass in asistentes" v-bind:key="ass.id">
             <strong>Carnet:</strong> {{ ass.carnet }} |
             <strong>Seccion:</strong> {{ ass.seccion }}
           </div>
 
-          <button @click="sayYoullGo">Asistiré!</button>
+          <button id="btn-asist" @click="sayYoullGo">Asistiré!</button>
         </div>
       </div>
     </span>
@@ -69,7 +69,7 @@ const conv = new showdown.Converter({
 })
 
 export default {
-  // layout: '',
+  layout: 'publicationLayouts',
   created () {
     findImgURL = this.findImg
   },
@@ -180,26 +180,37 @@ export default {
 }
 
 main{
+  max-width: 800px;
   padding: 0 70px;
 }
 
 #pub-content{
-  max-width: 900px;
   margin: 0 auto;
 }
 
 .asistentes-ev{
-  margin: 20px;
-  padding: 5px;
-  width: 20em;
-  border-radius: 2px;
-  box-shadow: 0 0 5px 0 gray;
+  margin: 20px 5%;
+  width: calc(90% - 20px);
+  background-color: #cacaca;
+  border-radius: 5px;
+  padding: 5px 20px;
+  box-shadow: 0px 7px 28px 18px rgba(199, 199, 199, 0.171);
 }
-
+.asistentes-ev > h1 {
+  color:#5700e2b7;
+}
 .asistente{
-  margin: 20px 0;
-  border-top: 1px solid gray;
-  border-bottom: 1px solid gray;
+  margin: 20px 5%;
+  width: 90%;
+}
+#btn-asist {
+  background-color: #5700e2b7;
+  color: white;
+  margin: 20px;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  border:none;
 }
 
 @media(max-width: 700px) {

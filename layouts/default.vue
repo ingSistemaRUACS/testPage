@@ -23,17 +23,14 @@ export default {
     Presentation,
     Menu,
     Footer
-  },
-  methods: {
-    ...mapActions({ ChargeUser: "auth/ChargeUser" })
   }
-};
+}
 </script>
 <style>
 #container {
   position: relative;
   width: calc(100vw - 40px);
-  background: rgb(214, 214, 214);
+  background: #f9f9f9;
   margin: 0;
   margin-left: 40px;
   padding: 0;
@@ -45,6 +42,7 @@ export default {
   padding-top: 100px;
   margin-top: 100vh;
   z-index: 10;
+  background: #f9f9f9;
 }
 #pag-article > article {
   min-height: 100vh;
@@ -66,7 +64,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: rgb(235, 235, 235);
+  background-color: #f9f9f9;
   overflow-x: hidden;
 }
 

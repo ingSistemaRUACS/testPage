@@ -1,10 +1,10 @@
 <template>
-  <div id="container">
+ <div id="container">
     <header>
       <Menu />
-      <Presentation />
+      <Bar />
     </header>
-    <div id="pag-article"> 
+    <div id="pag-News"> 
       <nuxt />
        <Footer />
     </div>  
@@ -12,8 +12,6 @@
 </template>
 
 <script>
-// solo para ....
-import { mapActions } from 'vuex'
 
 import Menu from "@/components/menu/Menu";
 import Bar from "@/components/header/Bar";
@@ -21,35 +19,31 @@ import Footer from "@/components/Footer";
 
 export default {
   components: {
-    Presentation,
     Bar,
+    Menu,
     Footer
-  },
-  methods: {
-    ...mapActions({ ChargeUser: "auth/ChargeUser" })
   }
-};
+}
 </script>
-<style>
+<style scoped>
 #container {
-  position: relative;
+    position: relative;
   width: calc(100vw - 40px);
-  background: #fff;
+  background: #f9f9f9;
   margin: 0;
   margin-left: 40px;
   padding: 0;
 }
 
-#pag-article {
+#pag-News{
   margin: 0;
   position:relative;
-  padding-top: 100px;
-  background: #fff;
-  margin-top: 100vh;
+  padding-top: 50px;
   z-index: 10;
+  background: #f9f9f9;
 }
-#pag-article > article {
-  min-height: 100vh;
+#pag-News > main {
+  min-height:calc(100vw - 40px);
   margin: 0 auto;
 }
 header {
@@ -68,7 +62,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: rgb(235, 235, 235);
+  background-color: #f9f9f9;
   overflow-x: hidden;
 }
 

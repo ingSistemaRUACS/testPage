@@ -1,18 +1,15 @@
 <template>
-<nuxt-link to="/">
-  <div class="top-bar">
+  <div id="top-bar">
+    <nuxt-link to="/">
     <img src="@/assets/UNI.svg" alt="UNI" id="icon-uni"></img>
     <h2>RUACS | Ingenieria de Sistemas</h2>
+    </nuxt-link>
   </div>
-</nuxt-link>
 </template>
 <style scoped>
-
-#presentation > #top-bar {
-  position: flex;
-  grid-column: span 2;
-  grid-row: 1;
-  width: 100%;
+#top-bar {
+  width: calc(100vw - 40px);
+  background: linear-gradient(45deg, #5700e2, #0b69ff);
   height: 3.5em;
   display:flex;
   justify-content: center;
@@ -42,7 +39,6 @@
 
 @media screen and (min-width: 1281px) and (max-width: 1920px) {
 #top-bar > a {
-
   font-size: 1.1em;
 }
 
@@ -53,9 +49,7 @@
 }
 @media screen and (min-width: 0px) and (max-width: 900px) {
 
-  #presentation > #top-bar {
-  grid-column:1;
-  grid-row: 1;
+  #top-bar {
   width: 100%;
   margin: 0;
   height: 3.5em;
