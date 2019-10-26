@@ -33,7 +33,7 @@ export default {
 #container {
   position: relative;
   width: calc(100vw - 40px);
-  background: #fff;
+  background: rgb(214, 214, 214);
   margin: 0;
   margin-left: 40px;
   padding: 0;
@@ -43,7 +43,6 @@ export default {
   margin: 0;
   position:relative;
   padding-top: 100px;
-  background: #fff;
   margin-top: 100vh;
   z-index: 10;
 }
