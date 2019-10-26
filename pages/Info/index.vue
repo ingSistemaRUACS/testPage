@@ -1,12 +1,5 @@
 <template>
   <article id="info">
-     <div class="container-info"> 
-      <img class="icon" src="@/assets/info/bullseye.svg" alt="" />
-      <h1>Objetivo general</h1>
-      <p>
-      Formar profesionales en Ingeniería de Sistemas capaces de desarrollar y gestionar sistemas organizacionales eficaces, eficientes, innovadores, de calidad y competitivos; de manera que aporten al desarrollo económico, social y tecnológico del país, aplicando las normas de cuido y conservación del ambiente, realizando proyectos de investigación y emprendimiento, que coadyuven a la solución de los problemas de la sociedad; empleando como herramienta fundamental las Tecnologías de la Información y la Comunicación de forma ética y responsable.
-      </p>
-    </div>
     <div class="container-info"> 
       <img class="icon" src="@/assets/info/bullseye.svg" alt="" />
       <h1>Objetivos específicos</h1>
@@ -66,28 +59,29 @@ export default {
     ...mapMutations(["ChangePresent"])
   },
   beforeMount() {
-    this.ChangePresent(0);
+    this.ChangePresent(3);
   }
 };
 </script>
 <style scoped>
 
 .container-info {
-  width: 400px;
+  width: 80%;
   height: auto;
   margin: 60px 0;
   padding: 50px;
   padding-top: 30px;
-  background: #474747;
-  color: #ffffff;
-  box-shadow: 0px 0px 5px 2px rgb(147, 147, 147);
+  background-color: #ffffff;
+  border-radius: 5px;
+  color: #3b3b3b;
+  box-shadow: 0px 7px 28px 18px rgba(199, 199, 199, 0.171);
 }
 .container-info:nth-child(2n+1) {
  margin-left: 0;
 }
 
 .container-info:nth-child(2n) {
-  margin-left: 400px;
+  margin-left: 20%;
 }
 
 .container-info > .icon {
@@ -104,11 +98,17 @@ export default {
 
 ul > li {
   margin: 12px 0;
+  margin-left: 5%;
   list-style-type: square;
 }
 
 .container-info > p {
   font-size: 1em;
+  margin-left: 5%;
+}
+
+.container-info > blockquote {
+  margin-left: 5%;
 }
 
 .autor {

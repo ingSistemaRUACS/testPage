@@ -191,7 +191,7 @@ main{
 .asistentes-ev{
   margin: 20px 5%;
   width: calc(90% - 20px);
-  background-color: #cacaca;
+  background-color: #ffffff;
   border-radius: 5px;
   padding: 5px 20px;
   box-shadow: 0px 7px 28px 18px rgba(199, 199, 199, 0.171);

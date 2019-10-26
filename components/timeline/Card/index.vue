@@ -61,6 +61,7 @@ export default {
 
 #title-event > #icon-event {
   width: 20px;
+  opacity: 0.8;
 }
 #title-event > h1 {
   color:#5700e2b7;
