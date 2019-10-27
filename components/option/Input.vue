@@ -33,7 +33,7 @@ export default {
 </script>
 <style scoped>
 #Input {
-  color: #ffffff;
+  color: #242424;
   display: block;
   margin: 10px auto;
   padding: 0;
@@ -48,18 +48,19 @@ export default {
 }
 
 #Input > input {
-  background: #535353;
-  border: solid #cfcfcf 1px;
+  background: #ffffff;
+  border: solid #797979 1px;
   width: 250px;
   font-size: 1em;
   margin: 3px 0;
   padding: 7px 0;
   padding-left: 15px;
-   color: #e7e7e7;
+   color: #2f2f2f;
 }
 
 #Input > input[disabled] {
-  border: solid #535353 1px;
+  background: #eeeeee;
+  border: solid #bbbbbb 1px;
 }
 
 
@@ -69,7 +70,7 @@ export default {
   padding: 0;
   padding-left: 15px;
   font-size: 0.8em;
-  color: #d6d6d6;
+  color: #555555;
 }
 
 #Input > .input-error {

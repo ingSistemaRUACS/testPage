@@ -52,15 +52,15 @@ export default {
   top: 0;
   display:inline-block;
   width: 100%;
-  border-bottom: solid #0b69ff 4px;
+  border-bottom: solid #474747 4px;
   overflow-y:hidden;
   overflow-x: auto;
 }
 
 .ItemActiveMenu {
   font-weight: bold;
-  color: #ebebeb;
-  background:  #0b69ff;
+  color: #ffffff;
+  background:  #474747;
   border:none;
 }
 

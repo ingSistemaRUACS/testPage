@@ -32,7 +32,7 @@ export default {
 #container {
   position: relative;
   width: calc(100vw - 40px);
-  background: #fff;
+  background: #f9f9f9;
   margin: 0;
   margin-left: 40px;
   padding: 0;
@@ -40,7 +40,7 @@ export default {
 
 #pag-article {
   position:relative;
-  background: #fff;
+  background: #f9f9f9;
   margin-top: 100vh;
   z-index: 10;
   padding: 0;

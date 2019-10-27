@@ -165,13 +165,13 @@ export default {
   overflow: hidden;
 }
 #option > #title-option {
-  background: #333333;
+  background: #3a3a3a;
   font-size: 1.3em;
   font-weight: normal;
   width: 96%;
   padding: 8px 2%;
   margin: 0;
-  color: #ffffff;
+  color: #fafafa;
 }
 #option > section {
   overflow: auto;
@@ -181,7 +181,7 @@ export default {
   background: linear-gradient(45deg, #5700e2, #0b69ff);
   font-weight: normal;
   font-size: 1.2em;
-  color: white;
+  color: #ffffff;
   padding: 10px 0;
   padding-left: 15px;
   margin: 0;
@@ -197,10 +197,16 @@ export default {
   margin: 10px;
 }
 
+#info-student {
+  margin-bottom: 100px;
+}
+
 #photo-perfil {
   width: 200px;
   margin: 0 auto;
   margin-top: 60px;
+  opacity: 0.9;
+  box-shadow: 0px 7px 28px 18px rgba(199, 199, 199, 0.171);
 }
 
 #photo-perfil > img {
@@ -215,7 +221,7 @@ export default {
 
 #verify-user,
 #delete-user {
-  color: #ffffff;
+  color: #272727;
   padding: 15px;
 
   margin-bottom: 100px;
