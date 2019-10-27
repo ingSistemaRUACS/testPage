@@ -40,6 +40,7 @@ export default {
   display:block;
   width: 70px;
   margin: 15px auto;
+  filter: invert(60%);
 }
 
 .button-login {
@@ -51,6 +52,7 @@ export default {
   justify-items: center;
   border: none;
   margin: 5px auto;
+  border-radius: 5px;
 }
 
 .button-login > img {
@@ -73,10 +75,5 @@ export default {
 
 #button-Twitter {
   background-color: #00acee;
-}
-@media screen and (max-width: 480px) {
-  #icon-user {
-  filter: invert(90%);
-}
 }
 </style>

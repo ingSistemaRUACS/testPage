@@ -18,13 +18,14 @@ export default {
 </script>
 <style scoped>
 #container-register{
-  background-color: #292929;
+  background-color: #ffffff;
   margin: 0 auto;
   margin-top: 60px;
   padding: 20px 0;
   position: relative;
   max-width: 350px;
-  box-shadow: 0px 0px 5px 2px rgb(147, 147, 147);
+  border-radius: 5px;
+  box-shadow: 0px 7px 28px 18px rgba(199, 199, 199, 0.171);
 }
 
 #pag {
@@ -47,7 +48,7 @@ html {
 
 body {
   margin: 0;
-  background-color: rgb(235, 235, 235);
+  background-color: #f9f9f9;
 }
 
 a{
@@ -61,7 +62,6 @@ a:visited{
 
 @media screen and (max-width: 480px) {
   #container-register {
-    background-color: #fff;
     max-width: 100%;
     height: 100vh;
     margin: 0;
