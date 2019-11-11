@@ -1,7 +1,9 @@
 <template>
   <section id="nueva-publicacion">
     <h1>Nueva Publicación</h1>
+    <p>Despues de el panel de creacion de Publicacion se encuentra la vista previa de esta.</p>
     <form enctype='multipart/form-data' id="pub-input" action="http://httpbin.org/anything" method="post" >
+     <h2 class="SubTitle">Crear Publicación</h2>
       <div>
         <label for="postTitle">Titulo:</label>
         <input v-model="postTitle" type="text" name="postTitle" id="postTitleInput">
@@ -19,14 +21,16 @@
         <label for="eventDetails">Fecha del evento</label>
         <input v-model="eventDate" type="date" name="eventDetails">
       </div>
-      <label for="contentInput">Contenido</label>
+      <div>
+        <label for="contentInput">Contenido</label>
       <textarea
       name="contentInput"
       id="content-input"
       spellcheck="false"
       v-model="liveCode"></textarea>
-
-      <label for="contentInput">Miniatura</label>
+      </div>
+      <div>
+         <label for="contentInput">Miniatura</label>
       <img-inputer
         id="thumbnail-inp"
         accept="image/*"
@@ -36,6 +40,8 @@
         />
       <!-- <input type="hidden" name="user" :value="loggedInEmail"> -->
     <card :title="postTitle" :description="postDesc" :esEvento="isEvent" :date="eventDate" :imgUrl="thumbURL" id="prev-card"/>
+     </div>
+    <div>
       <p>Imagenes</p>
       <div id="images-container">
         <img-inp
@@ -44,9 +50,11 @@
           @destroy="destr"
           @imageAdded="imgAdded"></img-inp>
       </div>
-      <input type="submit" @click="sendDataToServer" value="Guardar">
+       </div>
+      <input id="btn-public" type="submit" @click="sendDataToServer" value="Guardar">
     </form>
-    <h2>Vista Previa:</h2>
+    <div id="ViewPrev">
+        <h2  class="SubTitle">Vista Previa</h2>
     <h1>{{ postTitle }}</h1>
     <vue-showdown
       :id="'pub-content'"
@@ -58,6 +66,7 @@
       :tag="'article'"
       :extensions="[youtubeExtension, imageExtension]"/>
       <hr>
+    </div>
   </section>
 </template>
 
@@ -235,14 +244,37 @@ export default {
 }
 
 #content-input{
-  min-width: 100%;
-  max-width: 100%;
+  min-width: calc(100% - 20px);
+  max-width:calc(100% - 20px);
+  margin-left: 10px;
+  border: none;
+  background-color: #d6d6d655;
   height: 30vh;
 }
-
+.SubTitle {
+  text-align: center;
+  color: #474747;
+}
 #pub-input{
+  margin-bottom: 20px;
   padding: 30px 0;
-  border-bottom: 2px solid gray;
+  background-color: white;
+  padding: 20px 0;
+  box-shadow: 0px 7px 28px 18px rgba(199, 199, 199, 0.171);
+
+}
+
+#pub-input > div {
+  width: calc(100% - 40px);
+  margin:  0 20px;
+  padding: 2px 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  border-bottom: solid #959595 1px;
+}
+
+#pub-input > div > input {
+  border: none;
 }
 
 #nueva-publicacion {
@@ -251,5 +283,29 @@ export default {
 
 #thumbnail-inp .img-inputer__file-name{
   display: none;
+}
+#btn-public {
+  background:  #5700e2;
+  font-size: 1.1em;
+  border-radius: 5px;
+  color: white;
+  width: 150px;
+  height: 50px;
+  padding: 15px 20px;
+  border: none;
+  margin: 20px;
+  margin-left: 50px;
+}
+#ViewPrev {
+  padding-top: 30px;
+  background-color: white;
+  box-shadow: 0px 7px 28px 18px rgba(199, 199, 199, 0.171);
+}
+@media(max-width: 700px) {
+ #pub-input > div {
+  grid-template-columns: 100%;
+  grid-template-rows: auto 1fr;
+}
+
 }
 </style>
