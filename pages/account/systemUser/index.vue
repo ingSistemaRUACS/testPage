@@ -39,7 +39,7 @@ export default {
     ListId(){
       let data = [];
       this.getListVerify.forEach(element => {
-        data.push({id:element.id,carnet:element.carnet,section:element.section})
+        data.push(element)
       })
       return data;
     },

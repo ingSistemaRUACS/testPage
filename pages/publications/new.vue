@@ -73,12 +73,12 @@ import { uuid } from '@/utils/uuid'
 
 let imgURICallback = ()=>undefined
 export default {
+  layout: 'publicationLayouts',
   middleware: 'verifyAuthenticatedAdmin',
   components: {
     'vue-showdown': VueShowdown.VueShowdown,
     'img-inp': ImgInp,
-    'card': Card,
-    'crop-preview': clipperPreview,
+    'card': Card
   },
   created () {
     imgURICallback = this.getImgURL

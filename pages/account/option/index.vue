@@ -107,10 +107,10 @@ export default {
     })
   },
   methods: {
-    ...mapActions(["UpdateUser", "UpdateStudentData", "ChargeStudentData",'VerifyUser','StockMessageVerifyUser','UserRemove']),
+    ...mapActions(["UpdateStudentData", "ChargeStudentData",'VerifyUser','StockMessageVerifyUser']),
     cancelStudentData() {
       this.DesactiveDataStudent = true;
-      if (!this.student) {
+      if (this.dataStudent) {
         this.section = this.dataStudent.section;
         this.carnet = this.dataStudent.carnet;
       } else {

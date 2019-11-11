@@ -22,10 +22,13 @@
         <div class="asistentes-ev">
           <h1>Quienes asistiran: </h1>
           <div class="asistente" v-for="ass in asistentes" v-bind:key="ass.id">
-            <strong>Carnet:</strong> {{ ass.carnet }} |
-            <strong>Seccion:</strong> {{ ass.seccion }}
+            <div>
+               <img :src="ass.photo">
+               <div>
+                  <span>{{ ass.name }}</span> | <span>{{ ass.seccion }}</span> 
+               </div>
+            </div>
           </div>
-
           <button id="btn-asist" @click="sayYoullGo">Asistiré!</button>
         </div>
       </div>
@@ -131,9 +134,8 @@ export default {
               return db.ref('users/' + usr).once('value')
             }
           )
-        )).map(result => ({id: result.key, carnet: result.val()['carnet'], seccion: result.val()['section']}))
+        )).map(result => ({id: result.key,name: result.val()['name'],photo: result.val()['photo'], seccion: result.val()['section']}))
       }
-
       return {
         idPub: postId,
         publicacion: newPub,
@@ -202,6 +204,27 @@ main{
 .asistente{
   margin: 20px 5%;
   width: 90%;
+}
+
+.asistente > div > img{
+  width: 80px;
+}
+
+.asistente > div {
+  display: flex;
+  align-content: center;
+}
+
+.asistente > div > div{
+  display: flex;
+  height: 80px;
+  align-items: center;
+}
+
+.asistente > div > div > span{
+  font-weight: bold;
+  margin: 0 15px;
+  color:#494949;
 }
 #btn-asist {
   background-color: #5700e2b7;

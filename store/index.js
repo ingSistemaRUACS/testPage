@@ -14,7 +14,8 @@ const auth = () => {
       student: null,
       StockMessage: false,
       ListVerify: [],
-      present: {}
+      present: {},
+      process: false
     },
     getters: {
       isAuthenticated (state) {
@@ -68,13 +69,16 @@ const auth = () => {
         commit('resetUser')
         this.$router.push('/')
       },
+      // Actiliza los datos del estudiante
       async UpdateStudentData ({ state }, data) {
         await Auth.UpdateStudentData(state.user.id, !!state.student, data)
       },
+      // carga los datos del estudiante
       async ChargeStudentData ({ commit, state }) {
         const data = await Auth.DataStudent(state.user.id)
         commit('UpdateStudentData', data)
       },
+      // solicitud de verificacion por el usuario
       async VerifyUser ({ state, dispatch }) {
         if (state.student) {
           if (!state.student.hasOwnProperty('verify')) {
@@ -86,23 +90,39 @@ const auth = () => {
           dispatch('StockMessageVerifyUser')
         }
       },
+      // retorna la respuesta de verificacion
       async StockMessageVerifyUser ({ commit, state }) {
         const resp = await Auth.StockMessageVerifyUser(state.user.id)
         commit('UpdateStockMessage', resp)
       },
+      // carga lista de usuarios a verificar
       async ChargeListVerifyUser ({ commit, state }) {
-        const userVerify = await User.UsersVerify()
-        commit('UpdateListVerify', userVerify)
-      },
-      async verifyUsers ({ dispatch, state }, users) {
-        const finaly = await User.ValidUsers(users)
-        if (finaly) {
-          dispatch('ChargeListVerifyUser')
+        let userVerify = []
+        try {
+          userVerify = await User.UsersVerify()
+        } catch (error) {
+          userVerify = []
+        } finally {
+          if (!state.process) {
+            commit('UpdateListVerify', userVerify)
+          }
         }
-        this.$router.push('/account/myNews')
+      },
+      // comentar y revisar
+      async verifyUsers ({ dispatch, commit }, users) {
+        commit('EditProsses', true)
+        const resp = await User.ValidUsers(users)
+        if (resp) {
+          commit('UpdateListVerify', [])
+          commit('EditProsses', false)
+          this.$router.go()
+        }
       }
     },
     mutations: {
+      EditProsses (state, active) {
+        state.process = active
+      },
       editUser (state, user) {
         state.user = { id: user.uid, name: user.displayName, photo: user.photoURL, email: user.email, phone: user.phoneNumber }
       },
@@ -113,6 +133,7 @@ const auth = () => {
         state.user = null
       },
       UpdateStudentData (state, data) {
+        state.student = null
         state.student = data
       },
       UpdateStockMessage (state, resp) {
@@ -120,8 +141,9 @@ const auth = () => {
       },
       UpdateListVerify (state, listUser) {
         if (listUser) {
-          state.ListVerify = []
           state.ListVerify = listUser
+        } else {
+          state.ListVerify = []
         }
       },
       RemoveListVerify (state, i) {

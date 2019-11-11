@@ -24,11 +24,11 @@ export default {
   methods:{
     Click () {
       let data = []
-      data.push({id:this.info.id,carnet:this.info.carnet,section:this.info.section})
+      data.push(this.info)
       this.$emit('click',data)
     }
-  }
-};
+  },
+}
 </script>
 <style scoped>
 #userValid {
