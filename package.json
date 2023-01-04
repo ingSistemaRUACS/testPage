@@ -14,7 +14,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
     "firebase": "^7.0.0",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.15.8",
     "showdown": "^1.9.0",
     "vue-click-outside": "^1.0.7",
     "vue-img-inputer": "^2.1.6",
